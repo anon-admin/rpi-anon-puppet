@@ -1,5 +1,11 @@
 node default {
 
+     # unless dpkg --list puppetlabs-release
+     # lsbdistcodename = wheezy
+     # exec wget https://apt.puppetlabs.com/puppetlabs-release-wheezy.deb && dpkg -i puppetlabs-release-wheezy.deb
+     # cwd /tmp 
+
+
      # a mettre dans iptables et dans dnsmasq.conf
      $xenahd_ip = "192.168.0.13"
      $xenahd_mac = "00:1c:5e:00:5a:51"

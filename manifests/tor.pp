@@ -2,6 +2,7 @@ import "passwords"
 import "classes/simple_puppet"
 import "classes/packages"
 import "classes/userids"
+import "classes/tor"
 
 class puppet_consts_ {
 
@@ -12,6 +13,7 @@ class puppet_consts_ {
      $puppetadmin_shell = '/bin/false'
 
     $reports_dir = "/var/lib/puppet/reports"
+    $clientbucket_dir = "/var/lib/puppet/clientbucket"
 
     $box_identifier_array = split($hostname, "_")
     $manifest = $box_identifier_array[1]
@@ -43,10 +45,12 @@ node default {
     user        => root,
   }
 
-  Package<| |> -> Exec["/usr/bin/apt-get update"]
+  #Exec["/usr/bin/apt-get update"] -> Package<| |>
 
   include passwords
   include service_cron_up
   include simple_puppet_client
+
+  include tor
 
 }

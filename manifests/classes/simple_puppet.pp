@@ -1,27 +1,41 @@
 class puppet_clean inherits puppet_consts_ {
 
   $reports_dir = $puppet_consts_::reports_dir
+  $clientbucket_dir = $puppet_consts_::clientbucket_dir
 
-  tidy { "${reports_dir}":
+  tidy { ["${clientbucket_dir}", "${reports_dir}"]:
     recurse => true,
     backup  => false,
     age     => "1w",
     type    => 'mtime',
   }
 
+  Tidy["${clientbucket_dir}"] {
+    rmdirs  => false,
+  }
+
+  Tidy["${reports_dir}"] {
+    rmdirs  => true,
+  }
+
+
 }
 
 class puppet_usrlocalbin_links {
 
+      file { ["/etc/puppet/scripts/uidmod.sh", "/etc/puppet/scripts/gidmod.sh"]:
+        mode  => "a+x",
+      }
+
       file { "/usr/local/bin/uidmod.sh":
         ensure => link,
-        target => "/usr/local/bin/uidmod.sh",
+        target => "/etc/puppet/scripts/uidmod.sh",
         before => Mount["/usr/local/bin"],
       }
 
       file { "/usr/local/bin/gidmod.sh":
         ensure => link,
-        target => "/usr/local/bin/gidmod.sh",
+        target => "/etc/puppet/scripts/gidmod.sh",
         before => Mount["/usr/local/bin"],
       }
 
@@ -64,23 +78,18 @@ class simple_puppet_package_ inherits package_wget_ {
   Package["wget"] {
     ensure => latest,
   }
-  Package["wget"] -> Exec["/usr/bin/wget https://apt.puppetlabs.com/puppetlabs-release-${lsbdistcodename}.deb && /usr/bin/touch puppetlabs-release-${lsbdistcodename}.deb"]
+  Package["wget"] -> Exec["/usr/bin/wget https://apt.puppetlabs.com/puppetlabs-release-${lsbdistcodename}.deb"]
 
-
-  tidy { "/tmp/puppetlabs-release-${lsbdistcodename}.deb":
-    age    => "1m",
-    type   => mtime,
-    notify => Exec["/usr/bin/dpkg -r puppetlabs-release"],
+  # monthly update
+  cron { "force apt.puppetlabs update":
+    command => "/usr/bin/dpkg -r puppetlabs-release ; /bin/rm /tmp/puppetlabs-release-${lsbdistcodename}.deb",
+    #ensure  => absent,
+    user    => root,
+    special => 'monthly',
+    require => Service["cron"],
   }
 
-  exec { "/usr/bin/dpkg -r puppetlabs-release":
-    cwd         => "/tmp",
-    provider    => shell,
-    refreshonly => true,
-    before      => Exec["/usr/bin/dpkg -i puppetlabs-release-${lsbdistcodename}.deb"],
-  }
-
-  exec { "/usr/bin/wget https://apt.puppetlabs.com/puppetlabs-release-${lsbdistcodename}.deb && /usr/bin/touch puppetlabs-release-${lsbdistcodename}.deb":
+  exec { "/usr/bin/wget https://apt.puppetlabs.com/puppetlabs-release-${lsbdistcodename}.deb":
     cwd      => "/tmp",
     provider => shell,
     creates  => "/tmp/puppetlabs-release-${lsbdistcodename}.deb",
@@ -96,7 +105,7 @@ class simple_puppet_package_ inherits package_wget_ {
 
   package { ["puppet","facter"]:
     ensure => latest,
-    require => Exec["/usr/bin/dpkg -i puppetlabs-release-${lsbdistcodename}.deb"],
+    require => Exec["/usr/bin/dpkg -i puppetlabs-release-${lsbdistcodename}.deb", "/usr/bin/apt-get update"],
   }
   
   package { "puppetmaster":
