@@ -1,13 +1,14 @@
 class pdnsd::config (
-  $pdnsd_user        = $pdnsd::pdnsd_user,
-  $pdnsd_ip          = $pdnsd::pdnsd_ip,
-  $pdnsd_port        = $pdnsd::pdnsd_port,
-  $tor_ip            = $pdnsd::tor_ip,
-  $tor_dns_port      = $pdnsd::tor_dns_port,
-  $provider_domain   = $pdnsd::provider_domain,
-  $prodiver_dns_ip   = $pdnsd::prodiver_dns_ip,
-  $prodiver_dns_port = $pdnsd::prodiver_dns_port,
-  $user_localdomain  = $pdnsd::user_localdomain) inherits pdnsd {
+  $pdnsd_user           = $pdnsd::pdnsd_user,
+  $pdnsd_ip             = $pdnsd::pdnsd_ip,
+  $pdnsd_port           = $pdnsd::pdnsd_port,
+  $tor_ip               = $pdnsd::tor_ip,
+  $tor_dns_port         = $pdnsd::tor_dns_port,
+  $provider_domain_name = $pdnsd::provider_domain_name,
+  $provider_domain      = $pdnsd::provider_domain,
+  $prodiver_dns_ip      = $pdnsd::prodiver_dns_ip,
+  $prodiver_dns_port    = $pdnsd::prodiver_dns_port,
+  $user_localdomain     = $pdnsd::user_localdomain) inherits pdnsd {
        
   file { "/var/cache/pdnsd": require => User["${pdnsd_user}"], }
 

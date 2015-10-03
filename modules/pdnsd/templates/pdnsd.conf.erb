@@ -29,16 +29,16 @@ server {
     port=<%= @tor_dns_port %>;
     uptest=query;
     policy=included;
-    exclude=.<%= @provider_domain %>,<%= @user_localdomain%>;
+    exclude=<%= @provider_domain %>,<%= @user_localdomain%>;
 }
 
 server {
-    label="<%= @provider_domain %>";
+    label="<%= @provider_domain_name %>";
     ip=<%= @prodiver_dns_ip %>;
     port=<%= @prodiver_dns_port %>;
     uptest=query;
     policy=excluded;
-    include=.<%= @provider_domain %>;
+    include=<%= @provider_domain %>;
 }
 
 

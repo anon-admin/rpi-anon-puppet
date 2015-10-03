@@ -11,14 +11,15 @@
 # Sample Usage:
 #
 class pdnsd (
-  $pdnsd_ip          = $pdnsd::params::pdnsd_ip,
-  $pdnsd_port        = $pdnsd::params::pdnsd_port,
-  $tor_ip            = $pdnsd::params::tor_ip,
-  $tor_dns_port      = $pdnsd::params::tor_dns_port,
-  $provider_domain   = $pdnsd::params::provider_domain,
-  $prodiver_dns_ip   = $pdnsd::params::prodiver_dns_ip,
-  $prodiver_dns_port = $pdnsd::params::prodiver_dns_port,
-  $user_localdomain  = $pdnsd::params::user_localdomain) inherits pdnsd::params {
+  $pdnsd_ip             = $pdnsd::params::pdnsd_ip,
+  $pdnsd_port           = $pdnsd::params::pdnsd_port,
+  $tor_ip               = $pdnsd::params::tor_ip,
+  $tor_dns_port         = $pdnsd::params::tor_dns_port,
+  $provider_domain_name = $pdnsd::params::provider_domain_name,
+  $provider_domain      = $pdnsd::params::provider_domain,
+  $prodiver_dns_ip      = $pdnsd::params::prodiver_dns_ip,
+  $prodiver_dns_port    = $pdnsd::params::prodiver_dns_port,
+  $user_localdomain     = $pdnsd::params::user_localdomain) inherits pdnsd::params {
     
   include userids
 
