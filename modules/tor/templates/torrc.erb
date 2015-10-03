@@ -87,8 +87,8 @@ ControlPort 9051
 ## ORPort (e.g. to advertise 443 but bind to 9090), you can do it as
 ## follows.  You'll need to do ipchains or other port forwarding
 ## yourself to make this work.
-ORPort 443 NoListen
-ORPort 9090 NoAdvertise
+ORPort <%= @tor_external_public_port %> NoListen
+ORPort <%= @tor_external_port %> NoAdvertise
 
 ## The IP address or full DNS name for incoming connections to your
 ## relay. Leave commented out and Tor will guess.
@@ -200,5 +200,7 @@ PublishServerDescriptor 0
 #VirtualAddrNetworkIPv4 "10.192.0.0/10"
 #VirtualAddrNetworkIPv6 "[FC00]/7"
 #AutomapHostsOnResolve 1
-TransPort 9040
-DNSPort 5353
+TransPort <%= @tor_oignon_pages_port %>
+DNSPort <%= @tor_dns_port %>
+
+DisableDebuggerAttachment 0

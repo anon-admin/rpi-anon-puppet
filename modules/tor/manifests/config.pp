@@ -1,4 +1,13 @@
-class tor::config ($tor_id = $tor::tor_id, $tor_user = $tor::tor_user) inherits tor {
+class tor::config (
+  $tor_id = $tor::tor_id, 
+  $tor_user = $tor::tor_user,
+  $tor_ip = $tor::tor_ip,
+  $tor_port = $tor::tor_port,
+  $tor_external_public_port = $tor::tor_external_public_port,
+  $tor_external_port = $tor::tor_external_port,
+  $tor_dns_port = $tor::tor_dns_port,
+  $tor_oignon_pages_port = $tor::tor_oignon_pages_port
+) inherits tor {
 
   exec { ["/usr/local/bin/gidmod.sh ${tor_id} ${tor_user}", "/usr/local/bin/uidmod.sh ${tor_id} ${tor_user}"]: require => [
       Mount["/usr/local/bin"],

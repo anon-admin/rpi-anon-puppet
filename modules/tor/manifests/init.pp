@@ -10,7 +10,13 @@
 #
 # Sample Usage:
 #
-class tor () {
+class tor($tor_ip = $tor::params::tor_ip,
+  $tor_port = $tor::params::tor_port,
+  $tor_external_public_port = $tor::params::tor_external_public_port,
+  $tor_external_port = $tor::params::tor_external_port,
+  $tor_dns_port = $tor::params::tor_dns_port,
+  $tor_oignon_pages_port = $tor::params::tor_oignon_pages_port) inherits tor::params {
+    
   include userids
 
   $tor_id = $userids::tor_id
