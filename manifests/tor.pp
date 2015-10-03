@@ -56,6 +56,23 @@ class pdnsd::params {
 }
 
 
+class squid_base {
+  include userids
+
+  $squid_id = $userids::squid_id
+  $squid_user = $userids::squid_user
+  
+
+  exec { "/usr/local/bin/gidmod.sh ${squid_id} ${squid_user}": require => Mount["/usr/local/bin"], }
+
+  group { "${squid_user}":
+    ensure => present,
+    gid    => "${squid_id}",
+  }
+  Exec["/usr/local/bin/gidmod.sh ${squid_id} ${squid_user}"] -> Group["${squid_user}"]
+
+  
+}
 
 node default {
   exec { "/usr/bin/apt-get update":
@@ -64,10 +81,13 @@ node default {
     user        => root,
   }
 
+
   # Exec["/usr/bin/apt-get update"] -> Package<| |>
 
   include service_cron_up
   include simple_puppet::client
+
+  include squid_base
 
   include tor
   include pdnsd
