@@ -18,9 +18,14 @@ class tor::config (
     before => Mount["/etc/tor", "/var/log/tor", "/var/lib/tor"],
   }
 
-  file { ["/etc/tor", "/var/log/tor", "/var/lib/tor"]:
+  file { ["/etc/tor", "/var/log/tor"]:
     ensure => directory,
     mode   => "g+rw",
+    before => Group["${tor_user}"],
+  }
+
+  file { "/var/lib/tor":
+    ensure => directory,
     before => Group["${tor_user}"],
   }
 

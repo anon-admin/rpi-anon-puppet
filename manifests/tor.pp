@@ -70,5 +70,6 @@ node default {
   include simple_puppet::client
 
   include tor
+  include pdnsd
 
 }
