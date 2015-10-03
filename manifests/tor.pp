@@ -1,6 +1,4 @@
 import "passwords"
-import "classes/userids"
-import "classes/tor"
 
 class simple_puppet::params {
 
@@ -34,6 +32,12 @@ class service_cron_up inherits conf::service::cron {
 
 }
 
+class userids::params {
+  include passwords
+  
+  $admin_pwd = $passwords::admin_pwd
+  $admin_pwd_cr = $passwords::admin_pwd_cr
+}
 
 node default {
 
@@ -45,7 +49,6 @@ node default {
 
   #Exec["/usr/bin/apt-get update"] -> Package<| |>
 
-  include passwords
   include service_cron_up
   include simple_puppet::client
 
