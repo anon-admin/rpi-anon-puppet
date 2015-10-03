@@ -57,6 +57,7 @@ class pdnsd::params {
   $provider_domain = "free.fr"
   $prodiver_dns_ip = "192.168.1.254"
   $prodiver_dns_port = 53
+  $user_localdomain = ".ppprod.net,.ppprod.club"
 }
 
 

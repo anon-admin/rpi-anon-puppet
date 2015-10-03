@@ -6,7 +6,8 @@ class pdnsd::config (
   $tor_dns_port      = $pdnsd::tor_dns_port,
   $provider_domain   = $pdnsd::provider_domain,
   $prodiver_dns_ip   = $pdnsd::prodiver_dns_ip,
-  $prodiver_dns_port = $pdnsd::prodiver_dns_port) inherits pdnsd {
+  $prodiver_dns_port = $pdnsd::prodiver_dns_port,
+  $user_localdomain  = $pdnsd::user_localdomain) inherits pdnsd {
        
   file { "/var/cache/pdnsd": require => User["${pdnsd_user}"], }
 

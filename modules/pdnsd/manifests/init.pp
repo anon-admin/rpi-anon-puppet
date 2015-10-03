@@ -17,7 +17,8 @@ class pdnsd (
   $tor_dns_port      = $pdnsd::params::tor_dns_port,
   $provider_domain   = $pdnsd::params::provider_domain,
   $prodiver_dns_ip   = $pdnsd::params::prodiver_dns_ip,
-  $prodiver_dns_port = $pdnsd::params::prodiver_dns_port) inherits pdnsd::params {
+  $prodiver_dns_port = $pdnsd::params::prodiver_dns_port,
+  $user_localdomain  = $pdnsd::params::user_localdomain) inherits pdnsd::params {
     
   include userids
 
