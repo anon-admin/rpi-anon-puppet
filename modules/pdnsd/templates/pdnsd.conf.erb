@@ -28,6 +28,17 @@ server {
     ip="<%= @tor_ip %>";
     port=<%= @tor_dns_port %>;
     uptest=query;
+    policy=excluded;
+    exclude=".<%= @provider_domain %>",<%= @user_localdomain%>;
+}
+
+server {
+    label="<%= @provider_domain %>";
+    ip="<%= @prodiver_dns_ip %>";
+    port=<%= @prodiver_dns_port %>;
+    uptest=query;
+    policy=excluded;
+    exclude=<%= @user_localdomain%>;
 }
 
 
