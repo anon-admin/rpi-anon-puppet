@@ -79,7 +79,7 @@ class tor::config ($tor_id = $tor::tor_id, $tor_user = $tor::tor_user) inherits 
   Exec["/usr/local/bin/uidmod.sh ${tor_id} ${tor_user}"] -> User["${tor_user}"]
   Group["${tor_user}"] -> User["${tor_user}"]
 
-  file { "/etc/default/tor": source => "/etc/puppet/files/tor/tor.default", }
+  file { "/etc/default/tor": source => "puppet:///modules/tor/tor.default", }
 
   $hostname_array = split($hostname, "_")
   $real_hostname = $hostname_array[0]

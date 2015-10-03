@@ -22,7 +22,7 @@ class tor::install inherits tor {
   package { ["tor", "deb.torproject.org-keyring", "tor-geoipdb"]: }
 
   File["/etc/apt/sources.list.d/tor.list"] {
-    source => "/etc/puppet/files/tor/tor.sources.list", }
+    source => "puppet:///modules/tor/tor.sources.list", }
 
   Package[
     "tor", "deb.torproject.org-keyring", "tor-geoipdb"] {
