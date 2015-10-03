@@ -1,5 +1,5 @@
 # do we start pdnsd ?
-START_DAEMON=no
+START_DAEMON=yes
 # auto-mode, overrides /etc/pdsnd.conf if set [see /usr/share/pdnsd/]
 AUTO_MODE=
 # optional CLI options to pass to pdnsd(8)

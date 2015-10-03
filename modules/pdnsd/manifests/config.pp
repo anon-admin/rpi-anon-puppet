@@ -17,6 +17,7 @@ class pdnsd::config($pdnsd_user = $pdnsd::pdnsd_user,
   }
 
   File["/etc/default/pdnsd"] {
+    owner  => root,
     source => "puppet:///modules/pdnsd/pdnsd.default", }
 
   File["/etc/pdnsd.conf"] {
