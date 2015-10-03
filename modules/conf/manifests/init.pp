@@ -13,8 +13,9 @@
 class conf {
 
   contain conf::sysvinit
-  include conf::cron
-  include conf::apt
+  contain conf::cron
+  contain conf::apt
+  contain conf::wget
 
 }
 
