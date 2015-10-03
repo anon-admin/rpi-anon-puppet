@@ -1,5 +1,4 @@
 import "passwords"
-import "classes/packages"
 import "classes/userids"
 import "classes/tor"
 
@@ -19,13 +18,13 @@ class simple_puppet::params {
 
 }
 
-class package_cron_up inherits package_cron_ {
+class package_cron_up inherits conf::install::cron {
   Package["cron"] {
     ensure => latest,
   }
 
 }
-class service_cron_up inherits service_cron_{
+class service_cron_up inherits conf::service::cron {
 
   include package_cron_up
 
