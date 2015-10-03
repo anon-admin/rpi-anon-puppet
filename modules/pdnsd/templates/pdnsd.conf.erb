@@ -9,12 +9,10 @@ global {
         perm_cache=2048;
         cache_dir="/var/cache/pdnsd";
         run_as="<%= @pdnsd_user %>";
-        server_ip = <%= @pdnsd_ip %>;  // Use eth0 here if you want to allow other
-                                // machines on your network to query pdnsd.
+        server_ip = <%= @pdnsd_ip %>;
+        server_port = <%= @pdnsd_port %>;
         status_ctl = on;
         paranoid=on;
-//      query_method=tcp_udp;   // pdnsd must be compiled with tcp
-                                // query support for this to work.
         min_ttl=15m;       // Retain cached entries at least 15 minutes.
         max_ttl=1w;        // One week.
         timeout=10;        // Global timeout option (10 seconds).
