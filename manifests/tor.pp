@@ -54,7 +54,8 @@ class pdnsd::params {
   $tor_ip = $tor::params::tor_ip
   $tor_dns_port = $tor::params::tor_dns_port
   
-  $provider_domain = "free.fr"
+  $provider_domain_name = "free"
+  $provider_domain = ".free.fr,.freebox.fr"
   $prodiver_dns_ip = "192.168.1.254"
   $prodiver_dns_port = 53
   $user_localdomain = ".ppprod.net,.ppprod.club"
