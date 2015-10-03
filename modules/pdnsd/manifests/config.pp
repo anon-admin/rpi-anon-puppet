@@ -1,8 +1,12 @@
-class pdnsd::config($pdnsd_user = $pdnsd::pdnsd_user,
-  $pdnsd_ip = $pdnsd::pdnsd_ip,
-     $pdnsd_port = $pdnsd::pdnsd_port,
-     $tor_ip = $pdnsd::tor_ip,
-     $tor_dns_port = $pdnsd::tor_dns_port) inherits pdnsd {
+class pdnsd::config (
+  $pdnsd_user        = $pdnsd::pdnsd_user,
+  $pdnsd_ip          = $pdnsd::pdnsd_ip,
+  $pdnsd_port        = $pdnsd::pdnsd_port,
+  $tor_ip            = $pdnsd::tor_ip,
+  $tor_dns_port      = $pdnsd::tor_dns_port,
+  $provider_domain   = $pdnsd::provider_domain,
+  $prodiver_dns_ip   = $pdnsd::prodiver_dns_ip,
+  $prodiver_dns_port = $pdnsd::prodiver_dns_port) inherits pdnsd {
        
   file { "/var/cache/pdnsd": require => User["${pdnsd_user}"], }
 
@@ -18,7 +22,8 @@ class pdnsd::config($pdnsd_user = $pdnsd::pdnsd_user,
 
   File["/etc/default/pdnsd"] {
     owner  => root,
-    source => "puppet:///modules/pdnsd/pdnsd.default", }
+    source => "puppet:///modules/pdnsd/pdnsd.default",
+    notify  => Service["pdnsd"], }
 
   File["/etc/pdnsd.conf"] {
     content => template("pdnsd/pdnsd.conf.erb"),

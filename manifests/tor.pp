@@ -53,6 +53,10 @@ class pdnsd::params {
   
   $tor_ip = $tor::params::tor_ip
   $tor_dns_port = $tor::params::tor_dns_port
+  
+  $provider_domain = "free.fr"
+  $prodiver_dns_ip = "192.168.1.254"
+  $prodiver_dns_port = 53
 }
 
 
