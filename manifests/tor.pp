@@ -1,10 +1,9 @@
 import "passwords"
-import "classes/simple_puppet"
 import "classes/packages"
 import "classes/userids"
 import "classes/tor"
 
-class puppet_consts_ {
+class simple_puppet::params {
 
      include userids
 
