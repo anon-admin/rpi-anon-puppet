@@ -48,7 +48,7 @@ node default {
 
   include passwords
   include service_cron_up
-  include simple_puppet_client
+  include simple_puppet::client
 
   include tor
 
