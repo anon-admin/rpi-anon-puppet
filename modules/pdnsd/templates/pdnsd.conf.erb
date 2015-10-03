@@ -25,11 +25,11 @@ global {
    this is the recommended setup for mobile machines */
 server {
     label="tor";
-    ip="<%= @tor_ip %>";
+    ip=<%= @tor_ip %>;
     port=<%= @tor_dns_port %>;
     uptest=query;
-    policy=excluded;
-    exclude=".<%= @provider_domain %>",<%= @user_localdomain%>;
+    policy=included;
+    exclude=.<%= @provider_domain %>,<%= @user_localdomain%>;
 }
 
 server {
@@ -38,7 +38,7 @@ server {
     port=<%= @prodiver_dns_port %>;
     uptest=query;
     policy=excluded;
-    exclude=<%= @user_localdomain%>;
+    include=.<%= @provider_domain %>;
 }
 
 
