@@ -5,7 +5,7 @@ class tor::install inherits tor {
     before => Exec["/usr/bin/gpg --keyserver keys.gnupg.net --recv 886DDD89"],
   }
 
-  exec { "/usr/bin/gpg --keyserver keys.gnupg.ne --recv 886DDD89":
+  exec { "/usr/bin/gpg --keyserver keys.gnupg.net --recv 886DDD89":
     cwd      => '/tmp',
     provider => shell,
     user     => root,
