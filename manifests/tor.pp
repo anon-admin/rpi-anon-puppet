@@ -37,7 +37,7 @@ class userids::params {
 }
 
 class tor::params {
-  $tor_ip = "127.0.0.1"
+  $tor_ip = $ipaddress_lo
   $tor_port = 9050
   $tor_external_public_port = 443
   $tor_external_port = 9090
@@ -46,7 +46,7 @@ class tor::params {
 }
 
 class pdnsd::params {
-  $pdnsd_ip = "${ip_eth0}"
+  $pdnsd_ip = $ipaddress_eth0
   $pdnsd_port = 553
   
   include tor::params
