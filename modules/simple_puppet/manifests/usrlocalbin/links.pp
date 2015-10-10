@@ -1,5 +1,4 @@
-class simple_puppet::usrlocalbin::links {
-  file { ["/etc/puppet/scripts/uidmod.sh", "/etc/puppet/scripts/gidmod.sh"]: mode => "a+x", }
+class simple_puppet::usrlocalbin::links inherits simple_puppet::usrlocalbin::scripts {
 
   file { "/usr/local/bin/uidmod.sh":
     ensure => link,
