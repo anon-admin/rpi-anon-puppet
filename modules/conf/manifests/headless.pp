@@ -1,5 +1,5 @@
 class conf::headless {
-  $pkgs_to_remove1 = [
+  $pkgs_to_remove = [
     "desktop-base",
     "lightdm",
     "lxappearance",
@@ -12,25 +12,17 @@ class conf::headless {
     "lxsession-edit",
     "lxshortcut",
     "lxtask",
-    "lxterminal"]
+    "lxterminal",
+    "wolfram-engine",
+    "obconf",
+    "openbox",
+    "raspberrypi-artwork",
+    "xarchiver",
+    "xinit",
+    "xserver-xorg",
+    "xserver-xorg-video-fbdev"]
 
-  $pkgs_to_remove2 = ["wolfram-engine"]
-
-  $pkgs_to_remove3 = ["obconf", "openbox", "raspberrypi-artwork", "xarchiver", "xinit", "xserver-xorg", "xserver-xorg-video-fbdev"]
-
-  package { $pkgs_to_remove1:
-    ensure => purged,
-    before => Package[$pkgs_to_remove2],
-    notify => Exec["/usr/bin/apt-get -y auto-remove"],
-  }
-
-  package { $pkgs_to_remove2:
-    ensure => purged,
-    before => Package[$pkgs_to_remove3],
-    notify => Exec["/usr/bin/apt-get -y auto-remove"],
-  }
-
-  package { $pkgs_to_remove3:
+  package { $pkgs_to_remove:
     ensure => purged,
     before => Exec["/usr/bin/apt-get -y auto-remove"],
     notify => Exec["/usr/bin/apt-get -y auto-remove"],
