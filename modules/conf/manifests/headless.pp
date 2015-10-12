@@ -24,11 +24,11 @@ class conf::headless {
 
   package { $pkgs_to_remove:
     ensure => purged,
-    before => Exec["/usr/bin/apt-get -y auto-remove"],
-    notify => Exec["/usr/bin/apt-get -y auto-remove"],
+    before => Exec["/usr/bin/apt-get -y autoremove"],
+    notify => Exec["/usr/bin/apt-get -y autoremove"],
   }
 
-  exec { "/usr/bin/apt-get -y auto-remove":
+  exec { "/usr/bin/apt-get -y autoremove":
     cwd         => "/tmp",
     refreshonly => true,
     provider    => shell,
