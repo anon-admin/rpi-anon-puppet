@@ -12,6 +12,8 @@
 #
 class userids ($admin_pwd = $userids::params::admin_pwd, $admin_pwd_cr = $userids::params::admin_pwd_cr) inherits userids::params {
 
+  contain userids::conf::rootgroup
+
   $puppetadmin_id = 495
   $puppetadmin_user = "puppetadmin"
   $puppetadmin_pwd = "$admin_pwd"
