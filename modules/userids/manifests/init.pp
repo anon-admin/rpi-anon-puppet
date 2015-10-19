@@ -21,8 +21,8 @@ class userids ($admin_pwd = $userids::params::admin_pwd, $admin_pwd_cr = $userid
   $anonymous_user = "anonymous"
 
   contain userids::conf::proxygroup
-  $squid_id = userids::conf::proxygroup::proxy_id
-  $squid_user = userids::conf::proxygroup::proxy_group
+  $squid_id = $userids::conf::proxygroup::proxy_id
+  $squid_user = $userids::conf::proxygroup::proxy_group
 
   $pdnsd_id = 108
   $pdnsd_user = pdnsd
