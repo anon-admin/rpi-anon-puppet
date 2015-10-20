@@ -10,7 +10,7 @@ class conf::apt_proxy($routeur) inherits conf::install::apt {
     require => Package["apt"],
  }
   case $hostname {
-    $router: {
+    $routeur: {
       file { "/etc/apt/apt.conf.d/01proxy":
         source => "puppet:///modules/conf/apt_conf_01proxy_localhost",
       }
