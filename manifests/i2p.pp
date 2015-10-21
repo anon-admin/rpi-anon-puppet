@@ -15,20 +15,6 @@ class simple_puppet::params {
 
 }
 
-class package_cron_up inherits conf::install::cron {
-  Package["cron"] {
-    ensure => latest, }
-
-}
-
-class service_cron_up inherits conf::service::cron {
-  include package_cron_up
-
-  Service["cron"] {
-    ensure => running, }
-
-}
-
 class userids::params {
   include passwords
 
@@ -63,12 +49,11 @@ node default {
 
   # Exec["/usr/bin/apt-get update"] -> Package<| |>
 
-  include service_cron_up
   include simple_puppet::client
 
   include proxy_base
   include conf
-  include conf::headless
+  # no headless because of jdk oracle - include conf::headless
   include rsyslog
   
   class { 'conf::apt_proxy': routeur => "192.168.1.2", }
