@@ -11,7 +11,7 @@ class conf::config::apt inherits conf::install::apt {
     owner   => root,
     group   => root,
     mode    => 644,
-    source  => "/etc/puppet/files/conf/apt_conf_02periodic",
+    source  => "puppet:///modules/conf/apt_conf_02periodic",
     require => [File["/etc/cron.daily/apt"], Service["cron"]],
   }
 
