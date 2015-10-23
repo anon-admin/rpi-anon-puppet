@@ -11,8 +11,9 @@
 # Sample Usage:
 #
 class conf {
-
-  contain conf::sysvinit
+  case $lsbdistcodename {
+    "wheezy" : { contain conf::sysvinit }
+  }
   contain conf::cron
   contain conf::apt
   contain conf::wget
