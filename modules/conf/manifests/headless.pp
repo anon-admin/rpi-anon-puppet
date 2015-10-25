@@ -25,7 +25,6 @@ class conf::headless {
     "libutempter0",
     "p7zip-full",
     "python-xdg",
-    "raspberrypi-artwork",
     "xbitmaps",
     "xterm",
     "lxde",
