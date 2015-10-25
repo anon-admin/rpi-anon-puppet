@@ -23,7 +23,6 @@ class conf::headless {
     "xserver-xorg-video-fbdev",
     "libglade2-0",
     "libutempter0",
-    "lxde-common",
     "lxde-icon-theme",
     "lxtask",
     "p7zip-full",
