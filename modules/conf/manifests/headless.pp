@@ -26,7 +26,6 @@ class conf::headless {
     "p7zip-full",
     "python-xdg",
     "xbitmaps",
-    "xterm",
     "lxde",
     "lxde-core",
     "pipanel",
@@ -60,6 +59,7 @@ class conf::headless {
     "xserver-xorg-core",
     "xserver-xorg-video-fbturbo"]
 
+#    "xterm",
 
   package { $pkgs_to_remove:
     ensure => purged,
