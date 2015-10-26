@@ -81,12 +81,6 @@ class squid_base {
 }
 
 node default {
-  exec { "/usr/bin/apt-get update":
-    provider    => shell,
-    refreshonly => true,
-    user        => root,
-  }
-
 
   # Exec["/usr/bin/apt-get update"] -> Package<| |>
 
