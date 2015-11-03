@@ -13,6 +13,7 @@
 class conf {
   case $lsbdistcodename {
     "wheezy" : { contain conf::sysvinit }
+    default  : { contain conf::systemd }
   }
   contain conf::cron
   contain conf::apt
