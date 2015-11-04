@@ -69,13 +69,13 @@ class squid_base {
   $squid_user = $userids::squid_user
   
 
-  exec { "/usr/local/bin/gidmod.sh ${squid_id} ${squid_user}": require => Mount["/usr/local/bin"], }
-
-  group { "${squid_user}":
-    ensure => present,
-    gid    => "${squid_id}",
-  }
-  Exec["/usr/local/bin/gidmod.sh ${squid_id} ${squid_user}"] -> Group["${squid_user}"]
+#  exec { "/usr/local/bin/gidmod.sh ${squid_id} ${squid_user}": require => Mount["/usr/local/bin"], }
+#
+#  group { "${squid_user}":
+#    ensure => present,
+#    gid    => "${squid_id}",
+#  }
+#  Exec["/usr/local/bin/gidmod.sh ${squid_id} ${squid_user}"] -> Group["${squid_user}"]
 
   
 }
