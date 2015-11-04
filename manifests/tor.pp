@@ -80,12 +80,23 @@ class squid_base {
   
 }
 
+class source_interfaces inherits conf::network::config::interfaces {
+
+  File["/etc/network/interfaces"] {
+    source => "/etc/puppet/files/${hostname}/interfaces", 
+  }
+
+}
+
 node default {
 
   # Exec["/usr/bin/apt-get update"] -> Package<| |>
 
   include service_cron_up
   include simple_puppet::client
+
+  include conf::network::config::no_dhcpcd
+  include source_interfaces
 
   include squid_base
 
