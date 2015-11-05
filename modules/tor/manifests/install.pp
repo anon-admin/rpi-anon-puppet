@@ -2,10 +2,10 @@ class tor::install inherits tor {
   
   file { "/etc/apt/sources.list.d/tor.list":
     owner  => root,
-    before => Exec["/usr/bin/gpg --keyserver keys.gnupg.net --recv 886DDD89"],
+    before => Exec["/usr/bin/gpg --keyserver keyserver.ubuntu.com --recv 886DDD89"],
   }
 
-  exec { "/usr/bin/gpg --keyserver keys.gnupg.net --recv 886DDD89":
+  exec { "/usr/bin/gpg --keyserver keyserver.ubuntu.com --recv 886DDD89":
     cwd      => '/tmp',
     provider => shell,
     user     => root,
