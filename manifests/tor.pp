@@ -88,6 +88,14 @@ class source_interfaces inherits conf::network::config::interfaces {
 
 }
 
+class source_resolv inherits conf::network::config::resolv {
+
+  File["/etc/resolv.conf"] {
+    source => "/etc/puppet/files/${hostname}/resolv.conf", 
+  }
+
+}
+
 node default {
 
   # Exec["/usr/bin/apt-get update"] -> Package<| |>
@@ -97,7 +105,9 @@ node default {
 
   include conf
   include conf::network::config::no_dhcpcd
+  
   include source_interfaces
+  include source_resolv
 
   include squid_base
 
