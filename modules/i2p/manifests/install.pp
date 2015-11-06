@@ -4,7 +4,7 @@ class i2p::install inherits i2p {
 
   exec { "/usr/bin/wget -4 http://geti2p.net/_static/i2p-debian-repo.key.asc":
     cwd => "/tmp",
-    require => [ Package["wget"], Mount["/tmp"] ],
+    require => Package["wget"],
   }
 
   exec { "/usr/bin/apt-key add i2p-debian-repo.key.asc":
