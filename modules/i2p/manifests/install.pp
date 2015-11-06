@@ -29,7 +29,11 @@ class i2p::install inherits i2p {
     require => Exec["/usr/bin/apt-get update"],
   }
 
-  
+  file { "/etc/apt/sources.list":
+    owner  => root,
+    before => Exec["/usr/bin/apt-get update"],
+    content => template("i2p/sources.list.erb"),
+  }  
 }
 
 
