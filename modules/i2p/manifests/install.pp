@@ -34,6 +34,11 @@ class i2p::install inherits i2p {
     before => Exec["/usr/bin/apt-get update"],
     content => template("i2p/sources.list.erb"),
   }  
+  
+  
+  # wget http://archive.raspberrypi.org/debian/raspberrypi.gpg.key
+  # apt-key add raspberrypi.gpg.key
+
 }
 
 
