@@ -22,37 +22,44 @@ class userids::params {
   $admin_pwd_cr = $passwords::admin_pwd_cr
 }
 
+class source_interfaces inherits conf::network::config::interfaces {
 
-
-
-class proxy_base($proxy_id = $userids::conf::proxygroup::proxy_id,
-  $proxy_group = $userids::conf::proxygroup::proxy_group) inherits userids::conf::proxygroup {
-
-
-  exec { "/usr/local/bin/gidmod.sh ${proxy_id} ${proxy_group}": require => Mount["/usr/local/bin"], }
-
-  Group["${proxy_group}"] {
-    ensure => present,
+  File["/etc/network/interfaces"] {
+    source => "/etc/puppet/files/${hostname}/interfaces", 
   }
-  Exec["/usr/local/bin/gidmod.sh ${proxy_id} ${proxy_group}"] -> Group["${proxy_group}"]
 
-  
+}
+
+class source_resolv inherits conf::network::config::resolv {
+
+  File["/etc/resolv.conf"] {
+    source => "/etc/puppet/files/${hostname}/resolv.conf", 
+  }
+
+}
+
+class i2p::params {
+     $i2p_home = "/var/lib/i2p"
+     $i2p_version = "0.9.9"
+     $i2p_service = "i2prouter"
+     $i2p_confdir = "${i2p_home}/.i2p"
+     $i2p_pidfile = "${i2p_confdir}/router.pid"
+     $i2p_ip = "127.0.0.1"
+     $i2p_webconsole_port = 7657
+     $i2p_httpproxy_port = 4444
+     $i2p_httpsproxy_port = 4445
 }
 
 node default {
-  exec { "/usr/bin/apt-get update":
-    provider    => shell,
-    refreshonly => true,
-    user        => root,
-  }
-
-
-  # Exec["/usr/bin/apt-get update"] -> Package<| |>
 
   include simple_puppet::client
 
-  include proxy_base
   include conf
+  include conf::network::config::no_dhcpcd
+  
+  include source_interfaces
+  include source_resolv
+  
   # no headless because of jdk oracle - include conf::headless
   include rsyslog
   

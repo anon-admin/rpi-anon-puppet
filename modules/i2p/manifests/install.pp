@@ -1,11 +1,40 @@
 class i2p::install inherits i2p {
   package { "oracle-java8-jdk": ensure => latest, }
+
+
+  exec { "/usr/bin/wget -4 http://geti2p.net/_static/i2p-debian-repo.key.asc":
+    cwd => "/tmp",
+    require => [ Package["wget"], Mount["/tmp"] ],
+  }
+
+  exec { "/usr/bin/apt-key add i2p-debian-repo.key.asc":
+    cwd => "/tmp",
+    require => Exec["/usr/bin/wget -4 http://geti2p.net/_static/i2p-debian-repo.key.asc"],
+  }
+
+  file { "/etc/apt/sources.list.d/i2p.list":
+    owner  => root,
+    before => Exec["/usr/bin/apt-get update"],
+  }
+  File["/etc/apt/sources.list.d/i2p.list"] ~> Exec["/usr/bin/apt-get update"]
+  
+  package { ["i2p", "i2p-keyring"]: }
+
+  File["/etc/apt/sources.list.d/i2p.list"] {
+    content => template("i2p/i2p.sources.list"), }
+
+  Package[
+    "i2p", "i2p-keyring"] {
+    ensure  => latest,
+    require => Exec["/usr/bin/apt-get update"],
+  }
+
   
 }
 
 
 # root@myi2p:/usr/share/i2p# ls
-# blocklist.txt  clients.config  eepsite  history.txt  i2psnark.config   lib            systray.config
+# blocklist.txt  clients.config  eepsite  hisi2py.txt  i2psnark.config   lib            systray.config
 # certificates   docs            geoip    hosts.txt    i2ptunnel.config  router.config  webapps
 
 

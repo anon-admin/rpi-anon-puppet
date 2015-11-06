@@ -15,20 +15,6 @@ class simple_puppet::params {
 
 }
 
-#class package_cron_up inherits conf::install::cron {
-#  Package["cron"] {
-#    ensure => latest, }
-#
-#}
-#
-#class service_cron_up inherits conf::service::cron {
-#  include package_cron_up
-#
-#  Service["cron"] {
-#    ensure => running, }
-#
-#}
-
 class userids::params {
   include passwords
 
@@ -61,25 +47,6 @@ class pdnsd::params {
   $user_localdomain = ".ppprod.net,.ppprod.club"
 }
 
-
-class squid_base {
-  include userids
-
-  $squid_id = $userids::squid_id
-  $squid_user = $userids::squid_user
-  
-
-#  exec { "/usr/local/bin/gidmod.sh ${squid_id} ${squid_user}": require => Mount["/usr/local/bin"], }
-#
-#  group { "${squid_user}":
-#    ensure => present,
-#    gid    => "${squid_id}",
-#  }
-#  Exec["/usr/local/bin/gidmod.sh ${squid_id} ${squid_user}"] -> Group["${squid_user}"]
-
-  
-}
-
 class source_interfaces inherits conf::network::config::interfaces {
 
   File["/etc/network/interfaces"] {
@@ -109,8 +76,10 @@ node default {
   include source_interfaces
   include source_resolv
 
-  include squid_base
+  include rsyslog
 
+  class { 'conf::apt_proxy': routeur => "192.168.1.2", }
+  
   include tor
   include pdnsd
 
