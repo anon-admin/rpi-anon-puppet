@@ -53,6 +53,9 @@ class i2p::params {
 
 node default {
 
+  mount { "/var/i2p":
+  }
+
   include simple_puppet::client
 
   include conf
