@@ -642,7 +642,7 @@ class nfscommon inherits nfscommon_ {
 
 }
 
-class i2p {
+class i2p__ {
 
      file { "/data/glusterfs/.i2p":
      	  ensure => directory,

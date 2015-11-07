@@ -39,7 +39,8 @@ class source_resolv inherits conf::network::config::resolv {
 }
 
 class i2p::params {
-     $i2p_home = "/var/lib/i2p"
+  $i2p_mountpoint = "/var/i2p"
+     $i2p_home = "/var/lib/i2p"     
      $i2p_version = "0.9.9"
      $i2p_service = "i2prouter"
      $i2p_confdir = "${i2p_home}/.i2p"
@@ -56,6 +57,10 @@ node default {
 
   include conf
   include conf::network::config::no_dhcpcd
+  
+  class { 'conf::network':
+    interfaces => ['eth0','eth1'],
+  }
   
   include source_interfaces
   include source_resolv

@@ -18,16 +18,8 @@ class i2p::install inherits i2p {
   }
   File["/etc/apt/sources.list.d/i2p.list"] ~> Exec["/usr/bin/apt-get update"]
   
-  package { ["i2p", "i2p-keyring"]: }
-
   File["/etc/apt/sources.list.d/i2p.list"] {
     content => template("i2p/i2p.sources.list"), }
-
-  Package[
-    "i2p", "i2p-keyring"] {
-    ensure  => latest,
-    require => Exec["/usr/bin/apt-get update"],
-  }
 
   file { "/etc/apt/sources.list":
     owner  => root,

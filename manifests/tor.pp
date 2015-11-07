@@ -72,6 +72,11 @@ node default {
 
   include conf
   include conf::network::config::no_dhcpcd
+
+  class { 'conf::network':
+    interfaces => ['eth0','eth1'],
+  }
+  
   
   include source_interfaces
   include source_resolv
