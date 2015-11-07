@@ -33,7 +33,7 @@ class tor::params {
 
 class pdnsd::params {
   $pdnsd_ip = $ipaddress_eth0
-  $pdnsd_port = 553
+  $pdnsd_port = 53
   
   include tor::params
   
