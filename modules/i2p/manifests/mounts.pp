@@ -21,7 +21,7 @@ class i2p::mounts (
   Group["${i2p_user}"] -> File["/usr/share/i2p"]
 
   File["/var/log/i2p", "${i2p_home}"] {
-    user => "${i2p_user}", }
+    owner => "${i2p_user}", }
   User["${i2p_user}"] -> File["/var/log/i2p"]
   User["${i2p_user}"] -> File["${i2p_home}"]
 

@@ -18,6 +18,7 @@ inherits i2p::params {
   $i2p_user = $userids::i2p_user
 
   contain i2p::install
+  contain i2p::config
 
   file { ["/etc/i2p", "/var/log/i2p", "${i2p_home}", "/usr/share/i2p"]: }
 
