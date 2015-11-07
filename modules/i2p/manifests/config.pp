@@ -15,6 +15,7 @@ class i2p::config inherits i2p {
     "${i2p_home}/i2p-config/clients.config",
     "${i2p_home}/i2p-config/i2ptunnel.config"] {
     notify => Service["i2p"],
+    require => Mount["/etc/i2p", "/var/log/i2p", "${i2p_home}", "/usr/share/i2p"],
   }
 
 
