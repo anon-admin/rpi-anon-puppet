@@ -60,7 +60,7 @@ class userids ($admin_pwd = $userids::params::admin_pwd, $admin_pwd_cr = $userid
   $pritorxy_user = pritorxy
 
   $i2p_id = 122
-  $i2p_user = "i2psrv"
+  $i2p_user = "i2psvc"
 
 }
 
