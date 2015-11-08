@@ -1,6 +1,11 @@
 class i2p::install inherits i2p {
   package { "oracle-java8-jdk": ensure => latest, }
 
+  exec {"/usr/sbin/update-java-alternatives -s \$( /usr/sbin/update-java-alternatives -l | cut -f1 -d' ' | grep 8 | grep oracle )":
+    provider => shell,
+    before => Service["i2p"],
+    require => Package["oracle-java8-jdk"],
+  }
 
   exec { "/usr/bin/wget -4 http://geti2p.net/_static/i2p-debian-repo.key.asc":
     cwd => "/tmp",
