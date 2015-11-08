@@ -4,11 +4,12 @@ class i2p::mounts (
   $i2p_mountpoint = $i2p::i2p_mountpoint) inherits i2p {
   file { "${i2p_mountpoint}": ensure => directory, }
 
-  file { ["${i2p_mountpoint}/config", "${i2p_mountpoint}/log", "${i2p_mountpoint}/etc", "${i2p_mountpoint}/home"]:
+  file { ["${i2p_mountpoint}/config", "${i2p_mountpoint}/log", "${i2p_mountpoint}/etc", "${i2p_mountpoint}/home", "${i2p_mountpoint}/jvm"]:
     ensure  => directory,
     require => Mount["${i2p_mountpoint}"],
   }
 
+  File["/usr/lib/jvm"] { ensure => directory, mode => 755, }
   File[
     "/etc/i2p", "/var/log/i2p", "${i2p_home}", "/usr/share/i2p"] {
     ensure => directory,
@@ -46,8 +47,14 @@ class i2p::mounts (
     require => [File["/usr/share/i2p", "${i2p_mountpoint}/config"], Mount["${i2p_mountpoint}"]],
   }
 
+  mount { "/usr/lib/jvm":
+    device  => "${i2p_mountpoint}/jvm",
+    require => [File["/usr/lib/jvm", "${i2p_mountpoint}/jvm"], Mount["${i2p_mountpoint}"]],
+  }
+   mount["/usr/lib/jvm"] -> Package["oracle-java8-jdk"]
+
   Mount[
-    "/etc/i2p", "/var/log/i2p", "${i2p_home}", "/usr/share/i2p"] {
+    "/etc/i2p", "/var/log/i2p", "${i2p_home}", "/usr/share/i2p",  "/usr/lib/jvm"] {
     fstype  => none,
     options => "bind,rw",
     before  => Package["i2p"],

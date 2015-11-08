@@ -21,7 +21,7 @@ inherits i2p::params {
   contain i2p::config
   contain i2p::service
 
-  file { ["/etc/i2p", "/var/log/i2p", "${i2p_home}", "/usr/share/i2p"]: }
+  file { ["/etc/i2p", "/var/log/i2p", "${i2p_home}", "/usr/share/i2p", "/usr/lib/jvm"]: }
 
   package { ["i2p", "i2p-keyring"]: }
 
