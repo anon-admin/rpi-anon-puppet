@@ -1,4 +1,5 @@
 interface=<%= @dnsmasq_if_privaten %>
+bind-interfaces
 expand-hosts
 domain=<%= @dnsmasq_domain_privaten %>,<%= @dnsmasq_privaten %>.0/24
 dhcp-range=<%= @dnsmasq_privaten %>.20,<%= @dnsmasq_privaten %>.100,12h
