@@ -38,6 +38,14 @@ class source_resolv inherits conf::network::config::resolv {
 
 }
 
+class dnsmasq::params {
+  $dnsmasq_if_privaten = "eth0"
+  $dnsmasq_domain_privaten = "ppprod.prv"
+  $dnsmasq_privaten = "10.1.0"
+  $dnsmasq_routeur = $ipaddress_eth0
+  $dnsmasq_ntpserv = $ipaddress_eth0
+}
+
 node default {
 
   include simple_puppet::client
@@ -56,7 +64,7 @@ node default {
   
   class { 'conf::apt_proxy': routeur => "192.168.1.2", }
 
-  #include dnsmasq
+  include dnsmasq
   #include ntp
   #include privoxy
   #include polipo

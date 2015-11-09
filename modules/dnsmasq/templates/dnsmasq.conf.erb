@@ -1,0 +1,8 @@
+interface=<%= @dnsmasq_if_privaten %>
+expand-hosts
+domain=<%= @dnsmasq_domain_privaten %>,<%= @dnsmasq_privaten %>.0/24
+dhcp-range=<%= @dnsmasq_privaten %>.20,<%= @dnsmasq_privaten %>.100,12h
+dhcp-option=option:router,<%= @dnsmasq_routeur %>
+dhcp-option=option:ntp-server,<%= @dnsmasq_ntpserv %>
+log-queries
+log-dhcp
