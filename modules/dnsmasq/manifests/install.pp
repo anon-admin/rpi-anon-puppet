@@ -19,9 +19,9 @@ class dnsmasq::install (
   }
 
   User["${dnsmasq_user}"] {
-    gid     => "${squid_id}",
+    gid     => 65534,
     ensure  => present,
-    require => [Exec["/usr/local/bin/uidmod.sh ${dnsmasq_id} ${dnsmasq_user}", "/usr/sbin/service dnsmasq stop"], Group["${squid_user}"]],
+    require => [Exec["/usr/local/bin/uidmod.sh ${dnsmasq_id} ${dnsmasq_user}", "/usr/sbin/service dnsmasq stop"]],
     # before  => [Service["dnsmasq"], Exec["do iptables"]],
     before  => Service["dnsmasq"],
   }
