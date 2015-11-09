@@ -72,7 +72,7 @@ node default {
   class { 'conf::apt_proxy': routeur => "192.168.1.2", }
 
   include dnsmasq
-  #include ntp
+  include ntp
   #include privoxy
   #include polipo
 
