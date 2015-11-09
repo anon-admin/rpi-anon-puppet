@@ -41,7 +41,8 @@ class source_resolv inherits conf::network::config::resolv {
 class ntp::params {
   $ntp_hwsync=yes
   $ntp_hw_stratum=8
-
+  $ntp_interface="eth0"
+  $ntp_options="-4"
   $ntp_servers=[]
 }
 
