@@ -38,6 +38,13 @@ class source_resolv inherits conf::network::config::resolv {
 
 }
 
+class ntp::params {
+  $ntp_hwsync=yes
+  $ntp_hw_stratum=8
+
+  $ntp_servers=[]
+}
+
 class dnsmasq::params {
   $dnsmasq_if_privaten = "eth0"
   $dnsmasq_domain_privaten = "ppprod.prv"

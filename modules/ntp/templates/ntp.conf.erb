@@ -12,11 +12,10 @@ filegen peerstats file peerstats type day enable
 filegen clockstats file clockstats type day enable
 
 # Specify one or more NTP servers.
-<% if @ntp_servers -%>
-<% @ntp_servers.each do |this_server| -%>
-server <%= this_server %>
+<% if @ntp_servers -%><% if @ntp_servers != [] -%>
+<% @ntp_servers.flatten.each do |this_server| -%>server <%= this_server %>
 <% end -%>
-<% end -%>
+<% end -%><% end -%>
 
 
 # Access control configuration; see /usr/share/doc/ntp-doc/html/accopt.html for
