@@ -74,7 +74,7 @@ node default {
 
   include dnsmasq
   include ntp
-  #include privoxy
+  include privoxy
   #include polipo
   #incluse sshd
 
