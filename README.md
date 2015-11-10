@@ -2,6 +2,12 @@
 
 # rpi-anon-puppet
 
+## Before starting
+
+DO NOT HESITATE to initiate/complete a wiki page like with any of you questions. DO NOT HESITATE to create issues.
+
+If it does not break architecture, i will try to reply/correct.
+
 ## Overview
 
 Set of puppet manifests to deploy complete anonymizing solution.
