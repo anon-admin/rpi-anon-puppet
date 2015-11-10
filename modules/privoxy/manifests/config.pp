@@ -14,7 +14,7 @@ class privoxy::config (
   $privaten              = $privoxy::privaten) inherits privoxy {
   file { "/var/log/privoxy": require => User["${privoxy_user}"], }
 
-  file { "/etc/privoxy.conf": require => Package[privoxy], }
+  file { "/etc/privoxy/config": require => Package[privoxy], }
 
 #  file { "/etc/default/privoxy": }
 
