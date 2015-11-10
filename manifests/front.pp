@@ -54,6 +54,27 @@ class dnsmasq::params {
   $dnsmasq_ntpserv = $ipaddress_eth0
 }
 
+class polipo::params {
+  $tor_ip                = "192.168.1.3"
+  $tor_port              = "9050"
+}
+
+class privoxy::params {
+  $privoxy_ip            = $ipaddress_eth0
+  $privoxy_port          = 8118
+  $tor_ip                = "192.168.1.3"
+  $tor_port              = "9050"
+  $tor_oignon_pages_port = "9040"
+  $polipo_ip             = "127.0.0.1"
+  $polipo_port           = 8123
+  $i2p_ip                = "10.1.0.3"
+  $i2p_httpproxy_port    = 4444
+  $i2p_httpsproxy_port   = 4445
+  $i2p_webconsole_port   = 7657
+  $localn                = "192.168.1"
+  $privaten              = "10.1.0"  
+}
+
 node default {
 
   include simple_puppet::client
@@ -75,7 +96,7 @@ node default {
   include dnsmasq
   include ntp
   include privoxy
-  #include polipo
+  include polipo
   #incluse sshd
 
 }

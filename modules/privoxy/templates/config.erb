@@ -1335,11 +1335,12 @@ enable-proxy-authentication-forwarding 0
 #
 #       forward           localhost/     .
 #
-forward-socks4a 	.onion	<%= @tor_ip %>:<%= @tor_oignon_pages_port %> .
-forward-socks5		:443    <%= @tor_ip %>:<%= @tor_port %> .
-forward  		/	<%= @polipo_ip %>:<%= @polipo_port %>
-forward			.i2p	<%= @i2p_ip %>:<%= @i2p_httpproxy_port %>
-forward			:<%= @i2p_webconsole_port %>	.
+forward-socks4a 	.onion		<%= @tor_ip %>:<%= @tor_oignon_pages_port %> .
+forward				.i2p		<%= @i2p_ip %>:<%= @i2p_httpproxy_port %>
+forward				.i2p:443	<%= @i2p_ip %>:<%= @i2p_httpsproxy_port %>
+forward-socks5t		:443    	<%= @tor_ip %>:<%= @tor_port %> .
+forward  			/			<%= @polipo_ip %>:<%= @polipo_port %>
+forward				:<%= @i2p_webconsole_port %>	.
 
 forward         <%= @localn %>.*/     .  
 forward         <%= @privaten %>.*/        .  
