@@ -4,7 +4,7 @@
 
 ## Before starting
 
-Firstly, I m doing this only for the proof (and also because I'm fed up about ads, (google) tracking, ...). In any case for not legal things, any question to do so will be forget all about and remove if present in wiki or issues.
+Firstly, I m doing this only for the proof (and also because I'm fed up about ads, (google) tracking, ...). In any case for non legal things, any question to do so will be forget all about and remove if present in wiki or issues.
 
 DO NOT HESITATE to initiate/complete a wiki page with any of your questions. DO NOT HESITATE to create issues.
 
