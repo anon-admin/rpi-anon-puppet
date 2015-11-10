@@ -32,6 +32,8 @@ class tor::params {
 }
 
 class pdnsd::params {
+  include passwords
+
   $pdnsd_ip = $ipaddress_eth0
   $pdnsd_port = 53
   
@@ -44,7 +46,7 @@ class pdnsd::params {
   $provider_domain = ".netflix.com,.nflxvideo.net,.ntp.org,.github.com,.plex.tv,.ezvuu.com,.freephonie.net,.free.fr,.freebox.fr"
   $prodiver_dns_ip = "192.168.1.254"
   $prodiver_dns_port = 53
-  $user_localdomain = ".ppprod.net,.ppprod.club"
+  $user_localdomain = $passwords::localdomain
 }
 
 class source_interfaces inherits conf::network::config::interfaces {
