@@ -7,11 +7,13 @@
 Set of puppet manifests to deploy complete anonymizing solution.
 To be used using "puppet apply" inside a node.
 
-Current configuration is on Raspberry2 (slimmed jessie raspbian) with 2 ethernet adapters and an external hard drive.
+Current configuration is on Raspberry2 (slimmed jessie raspbian) with 2 ethernet adapters and an external hard drive (br0/dhcp/192.168.1.2 and br1/static/10.1.0.1).
 Nodes are deployed using lxc. Network is bridged on both interfaces.
 
-Barebone contains itself a puppet with some deploying utilities (modules : puppet, lxc, rpi_annon_puppet, ...).
+Barebone contains itself a puppet with some deploying utilities (modules : puppet, lxc, rpi_anon_puppet, ...).
+
 bind9 for local domain resolving, then forwarded on tor dns.
+
 iptables rules are needed to reroute correctly packets ; using nodes on differents raspberry avoid using those rules.
 
 ## Install
