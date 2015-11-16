@@ -1,4 +1,4 @@
-class apt_cacher::user::definition ($acng_user = $apt_cacher::acng_user, $acng_id = $apt_cacher::acng_id) inherits apt_cacher {
+class simple_apt_cacher::user::definition ($acng_user = $simple_apt_cacher::acng_user, $acng_id = $simple_apt_cacher::acng_id) inherits simple_apt_cacher {
   exec { ["/usr/local/bin/gidmod.sh ${acng_id} ${acng_user}", "/usr/local/bin/uidmod.sh ${acng_id} ${acng_user}"]: require => Mount[
       "/usr/local/bin"], }
 
