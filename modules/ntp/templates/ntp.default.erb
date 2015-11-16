@@ -1,1 +1,1 @@
-NTPD_OPTS='-g <%= @ntp_options %> <% if @ntp_interface != "" -%>-I <%= @ntp_interface %><% end -%>'
+NTPD_OPTS='-g <%= @ntp_options %> <% if not @ntp_interface.nil? -%>-I <%= @ntp_interface %><% end -%>'
