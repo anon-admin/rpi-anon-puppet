@@ -1,4 +1,5 @@
 import "passwords"
+import "consts"
 
 class simple_puppet::params {
   include userids
@@ -22,7 +23,7 @@ class userids::params {
   $admin_pwd_cr = $passwords::admin_pwd_cr
 }
 
-class tor::params {
+class tor::params inherits consts {
   $tor_ip = $ipaddress_lo
   $tor_port = 9050
   $tor_external_public_port = 443
@@ -31,7 +32,13 @@ class tor::params {
   $tor_oignon_pages_port = 9040
 }
 
-class pdnsd::params {
+class pdnsd::params(
+  $user_localdomain = $consts::localdomain,
+  $provider_domain_name = $consts::provider_domain_name,
+  $provider_domain = $consts::provider_domain,
+  $prodiver_dns_ip = $consts::prodiver_dns_ip,
+  $prodiver_dns_port = $consts::prodiver_dns_port  
+) inherits consts {
   include passwords
 
   $pdnsd_ip = $ipaddress_eth0
@@ -42,11 +49,6 @@ class pdnsd::params {
   $tor_ip = $tor::params::tor_ip
   $tor_dns_port = $tor::params::tor_dns_port
   
-  $provider_domain_name = "free"
-  $provider_domain = ".netflix.com,.nflxvideo.net,.ntp.org,.github.com,.plex.tv,.ezvuu.com,.freephonie.net,.free.fr,.freebox.fr"
-  $prodiver_dns_ip = "192.168.1.254"
-  $prodiver_dns_port = 53
-  $user_localdomain = $passwords::localdomain
 }
 
 class source_interfaces inherits conf::network::config::interfaces {
@@ -85,7 +87,8 @@ node default {
 
   include rsyslog
 
-  class { 'conf::apt_proxy': routeur => "192.168.1.2", }
+  include consts
+  class { 'conf::apt_proxy': routeur => $consts::ipaddress_routeur, }
   
   include tor
   include pdnsd
