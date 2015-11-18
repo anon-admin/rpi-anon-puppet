@@ -21,7 +21,7 @@ class conf::apt_proxy ($routeur) inherits conf::install::apt {
 
   tidy { "/var/cache/apt/archives":
     age     => "1m",
-    recurse => false,
+    recurse => 1,
     backup  => false,
     matches => "*.deb",
     require => File["/etc/apt/apt.conf.d/01proxy"],
