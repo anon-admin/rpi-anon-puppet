@@ -1,4 +1,5 @@
 import "passwords"
+import "consts"
 
 class simple_puppet::params {
   include userids
@@ -83,7 +84,7 @@ node default {
   include conf::network::config::no_dhcpcd
   
   class { 'conf::network':
-    interfaces => ['eth0','eth1'],
+    interfaces => ['eth0'],
   }
   
   include source_interfaces
@@ -91,7 +92,13 @@ node default {
   
   include rsyslog
   
-  class { 'conf::apt_proxy': routeur => "192.168.1.2", }
+  include consts
+  class { 'conf::apt_proxy': routeur => $ipaddress_eth0, }
+  class { 'simple_apt_cacher::service': 
+    proxy_ip => $consts::routeur_private_ip, 
+    proxy_port => 9999
+  }
+  Class['simple_apt_cacher::service'] -> Class['conf::apt_proxy']
 
   include dnsmasq
   include ntp

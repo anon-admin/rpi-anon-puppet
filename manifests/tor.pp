@@ -41,7 +41,7 @@ class pdnsd::params(
 ) inherits consts {
   include passwords
 
-  $pdnsd_ip = $ipaddress_eth0
+  $pdnsd_ip = "0.0.0.0"
   $pdnsd_port = 53
   
   include tor::params

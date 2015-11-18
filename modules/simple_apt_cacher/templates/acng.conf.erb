@@ -39,7 +39,7 @@ Port:9999
 # Default: listens on all interfaces and protocols
 #
 # BindAddress: localhost 192.168.7.254 publicNameOnMainInterface
-BindAddress: 10.1.0.2
+BindAddress: <%= @ipaddress_eth0 %>
 
 # The specification of another HTTP proxy which shall be used for downloads.
 # It can include user name and password but see the manual for limitations.
@@ -48,7 +48,7 @@ BindAddress: 10.1.0.2
 #
 # Proxy: http://www-proxy.example.net:3128
 # Proxy: https://username:proxypassword@proxy.example.net:3129
-Proxy: http://192.168.1.2:9999
+Proxy: http://<%= @proxy_ip %>:<%= @proxy_port %>
 
 # Repository remapping. See manual for details.
 # In this example, some backends files might be generated during package

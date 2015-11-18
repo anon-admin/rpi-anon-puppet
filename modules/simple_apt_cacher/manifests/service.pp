@@ -1,4 +1,4 @@
-class simple_apt_cacher::service ($acng_user = $simple_apt_cacher::acng_user) inherits simple_apt_cacher {
+class simple_apt_cacher::service ($proxy_ip, $proxy_port, $acng_user = $simple_apt_cacher::acng_user) inherits simple_apt_cacher::config {
 
   contain simple_apt_cacher::clean
 
