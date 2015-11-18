@@ -1,4 +1,5 @@
 import "passwords"
+import "consts"
 
 class simple_puppet::params {
   include userids
@@ -71,8 +72,8 @@ node default {
   # no headless because of jdk oracle - include conf::headless
   include rsyslog
   
-  class { 'conf::apt_proxy': routeur => "192.168.1.2", }
-  
+  include consts
+  class { 'conf::apt_proxy': routeur => $consts::routeur_ip, }  
   include i2p
 
 }

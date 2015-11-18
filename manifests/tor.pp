@@ -88,7 +88,7 @@ node default {
   include rsyslog
 
   include consts
-  class { 'conf::apt_proxy': routeur => $consts::ipaddress_routeur, }
+  class { 'conf::apt_proxy': routeur => $consts::routeur_ip, }
   
   include tor
   include pdnsd
