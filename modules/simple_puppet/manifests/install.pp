@@ -1,6 +1,6 @@
 class simple_puppet::install inherits conf::config::wget {
   
-  Package["wget"] -> Exec["/usr/bin/wget https://apt.puppetlabs.com/puppetlabs-release-${lsbdistcodename}.deb"]
+  Package["wget"] -> Exec["/usr/bin/wget -4 http://apt.puppetlabs.com/puppetlabs-release-${lsbdistcodename}.deb"]
 
   # monthly update
   cron { "force apt.puppetlabs update":
