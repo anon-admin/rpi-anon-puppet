@@ -11,6 +11,7 @@
 # Sample Usage:
 #
 class privoxy (
+  $template_name         = "config",
   $privoxy_ip            = $privoxy::params::privoxy_ip,
   $privoxy_port          = $privoxy::params::privoxy_port,
   $tor_ip                = $privoxy::params::tor_ip,

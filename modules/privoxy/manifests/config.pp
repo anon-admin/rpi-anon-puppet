@@ -1,4 +1,5 @@
 class privoxy::config (
+  $template_name         = $privoxy::template_name,
   $privoxy_user          = $privoxy::privoxy_user,
   $privoxy_ip            = $privoxy::privoxy_ip,
   $privoxy_port          = $privoxy::privoxy_port,
@@ -31,7 +32,7 @@ class privoxy::config (
 #  }
 
   File["/etc/privoxy/config"] {
-    content => template("privoxy/config.erb"),
+    content => template("privoxy/${template_name}.erb"),
     notify  => Service["privoxy"],
   }
 
