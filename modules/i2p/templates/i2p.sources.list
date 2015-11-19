@@ -1,2 +1,2 @@
-deb http://deb.i2p2.no/ <%= lsbdistcodename %> main
-deb-src http://deb.i2p2.no/ <%= lsbdistcodename %> main
+deb http://deb.i2p2.no/ <%= @lsbdistcodename %> main
+deb-src http://deb.i2p2.no/ <%= @lsbdistcodename %> main
