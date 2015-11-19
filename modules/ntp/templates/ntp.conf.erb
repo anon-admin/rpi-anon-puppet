@@ -50,6 +50,6 @@ restrict ::1
 
 <% if @ntp_hwsync -%>
 server 127.127.1.0
-fudge 127.127.1.0<% if @ntp_hw_stratum -%> stratum <%= ntp_hw_stratum %><% end -%>
+fudge 127.127.1.0<% if @ntp_hw_stratum -%> stratum <%= @ntp_hw_stratum %><% end -%>
 <% end -%>
 
