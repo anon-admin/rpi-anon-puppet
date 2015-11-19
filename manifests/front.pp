@@ -77,6 +77,26 @@ class polipo::params(
 ) inherits privoxy::params {
 }
 
+class iptables::params(
+  $domain_privaten      = $consts::domain_privaten,
+  $localdomain          = $consts::localdomain,
+  $provider_domain_name = $consts::provider_domain_name,
+  $provider_domain      = $consts::provider_domain,
+  $prodiver_dns_ip      = $consts::prodiver_dns_ip,
+  $prodiver_dns_port    = $consts::prodiver_dns_port,
+  $routeur_ip           = $consts::prodiver_dns_port,
+  $routeur_private_ip   = $consts::prodiver_dns_port,
+  $localn               = $consts::localn,
+  $privaten             = $consts::privaten,
+  $front_ip             = $consts::front_ip,
+  $tor_ip               = $consts::tor_ip,
+  $tor_private_ip       = $consts::tor_private_ip,
+  $i2p_ip               = $consts::i2p_ip,
+  $i2p_private_ip       = $consts::i2p_private_ip
+) inherits consts {
+  $is_lxc_box = true
+}
+
 node default {
 
   include simple_puppet::client
@@ -107,4 +127,5 @@ node default {
   include polipo
   #incluse sshd
 
+  include iptables
 }
