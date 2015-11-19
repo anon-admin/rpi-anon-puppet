@@ -3,10 +3,10 @@ class polipo::config (
   $tor_port              = $polipo::tor_port
 ) inherits polipo {
     
-  file { "/etc/polipo/torconf": require => Package[polipo], }
+  file { "/etc/polipo/config": require => Package[polipo], }
 
-  File["/etc/polipo/torconf"] {
-    content => template("polipo/torconf.erb"),
+  File["/etc/polipo/config"] {
+    content => template("polipo/config.erb"),
     notify  => Service["polipo"],
   }
 
