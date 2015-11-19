@@ -24,35 +24,37 @@ class userids::params {
 }
 
 class source_interfaces inherits conf::network::config::interfaces {
-
   File["/etc/network/interfaces"] {
-    source => "/etc/puppet/files/${hostname}/interfaces", 
-  }
+    source => "/etc/puppet/files/${hostname}/interfaces", }
 
 }
 
 class source_resolv inherits conf::network::config::resolv {
-
   File["/etc/resolv.conf"] {
-    source => "/etc/puppet/files/${hostname}/resolv.conf", 
-  }
+    source => "/etc/puppet/files/${hostname}/resolv.conf", }
 
 }
 
 class i2p::params {
   $i2p_mountpoint = "/var/i2p"
-     $i2p_home = "/var/lib/i2p"     
-     $i2p_version = "0.9.9"
-     $i2p_service = "i2prouter"
-     $i2p_confdir = "${i2p_home}/.i2p"
-     $i2p_pidfile = "${i2p_confdir}/router.pid"
-     $i2p_ip = "127.0.0.1"
-     $i2p_webconsole_port = 7657
-     $i2p_httpproxy_port = 4444
-     $i2p_httpsproxy_port = 4445
+  $i2p_home = "/var/lib/i2p"
+  $i2p_version = "0.9.9"
+  $i2p_service = "i2prouter"
+  $i2p_confdir = "${i2p_home}/.i2p"
+  $i2p_pidfile = "${i2p_confdir}/router.pid"
+  $i2p_ip = "127.0.0.1"
+  $i2p_webconsole_port = 7657
+  $i2p_httpproxy_port = 4444
+  $i2p_httpsproxy_port = 4445
 }
 
-class iptables::params(
+class privoxy::params inherits consts {
+  $tor_ip = $consts::tor_private_ip
+  $tor_port = "9050"
+  $privaten = $consts::privaten
+}
+
+class iptables::params (
   $domain_privaten      = $consts::domain_privaten,
   $localdomain          = $consts::localdomain,
   $provider_domain_name = $consts::provider_domain_name,
@@ -67,36 +69,33 @@ class iptables::params(
   $tor_ip               = $consts::tor_ip,
   $tor_private_ip       = $consts::tor_private_ip,
   $i2p_ip               = $consts::i2p_ip,
-  $i2p_private_ip       = $consts::i2p_private_ip
-) inherits consts {
+  $i2p_private_ip       = $consts::i2p_private_ip) inherits consts {
   $is_lxc_box = true
 }
 
 node default {
-
-  mount { "/var/i2p":
-  }
+  mount { "/var/i2p": }
 
   include simple_puppet::client
 
   include conf
   include conf::network::config::no_dhcpcd
-  
-  class { 'conf::network':
-    interfaces => ['eth0','eth1'],
-  }
-  
+
+  class { 'conf::network': interfaces => ['eth0', 'eth1'], }
+
   include source_interfaces
   include source_resolv
-  
+
   # no headless because of jdk oracle - include conf::headless
   include rsyslog
-  
+
   include consts
-  class { 'conf::apt_proxy': routeur => $consts::routeur_ip, }  
+
+  class { 'conf::apt_proxy': routeur => $consts::routeur_ip, }
 
   include iptables
-  
+
+  class { 'privoxy': template_name => "forward" }
   include i2p
 
 }
