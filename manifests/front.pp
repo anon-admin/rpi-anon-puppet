@@ -121,6 +121,12 @@ node default {
   }
   Class['simple_apt_cacher::service'] -> Class['conf::apt_proxy']
 
+  class { 'conf::http_proxy':
+    http_proxy_ip    => "localhost",
+    http_proxy_port  => 8118,
+    https_proxy_ip   => "localhost",
+    https_proxy_port => 8118
+  }
   include dnsmasq
   include ntp
   include privoxy
