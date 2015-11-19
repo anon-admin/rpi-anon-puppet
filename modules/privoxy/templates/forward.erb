@@ -1065,6 +1065,7 @@ enforce-blocks 0
 #      an IPv4 address (not supported on all platforms):
 #
 #        permit-access  [::ffff:192.0.2.0]/120
+permit-access  <%= @localn %>.0/24
 permit-access  <%= @privaten %>.0/24
 permit-access  localhost
 #

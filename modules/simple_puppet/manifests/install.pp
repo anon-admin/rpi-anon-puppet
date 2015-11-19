@@ -11,7 +11,7 @@ class simple_puppet::install inherits conf::config::wget {
     require => Service["cron"],
   }
 
-  exec { "/usr/bin/wget https://apt.puppetlabs.com/puppetlabs-release-${lsbdistcodename}.deb":
+  exec { "/usr/bin/wget -4 http://apt.puppetlabs.com/puppetlabs-release-${lsbdistcodename}.deb":
     cwd      => "/tmp",
     provider => shell,
     creates  => "/tmp/puppetlabs-release-${lsbdistcodename}.deb",

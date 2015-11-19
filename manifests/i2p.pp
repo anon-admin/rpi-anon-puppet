@@ -51,6 +51,7 @@ class i2p::params {
 class privoxy::params inherits consts {
   $tor_ip = $consts::tor_private_ip
   $tor_port = "9050"
+  $localn = $consts::localn
   $privaten = $consts::privaten
 }
 
