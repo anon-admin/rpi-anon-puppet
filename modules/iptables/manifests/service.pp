@@ -1,4 +1,4 @@
-class iptables::service inherits iptables {
+class iptables::service {
   exec { "/sbin/iptables-restore </root/iptables.sav":
     provider => shell,
     cwd      => '/tmp',
