@@ -1065,6 +1065,8 @@ enforce-blocks 0
 #      an IPv4 address (not supported on all platforms):
 #
 #        permit-access  [::ffff:192.0.2.0]/120
+permit-access  <%= @privaten %>.0/24
+permit-access  localhost
 #
 #
 #  4.8. buffer-limit
@@ -1312,7 +1314,7 @@ enable-proxy-authentication-forwarding 0
 #      would use something like:
 #
 #        forward-socks5   /               127.0.0.1:9050 .
-forward-socks5t   /               10.1.0.3:9050 .
+forward-socks5t   /               <%= @tor_ip %>:<%= @tor_port %> .
 #
 #      The public Tor network can't be used to reach your local
 #      network, if you need to access local servers you therefore

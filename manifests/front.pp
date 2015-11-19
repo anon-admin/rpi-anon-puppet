@@ -47,33 +47,34 @@ class ntp::params {
   $ntp_servers=[]
 }
 
-class dnsmasq::params {
+class dnsmasq::params inherits consts {
   $dnsmasq_if_privaten = "eth0"
-  $dnsmasq_domain_privaten = "ppprod.prv"
-  $dnsmasq_privaten = "10.1.0"
+  $dnsmasq_domain_privaten = $consts::domain_privaten
+  $dnsmasq_privaten = $consts::privaten
   $dnsmasq_routeur = $ipaddress_eth0
   $dnsmasq_ntpserv = $ipaddress_eth0
 }
 
-class polipo::params {
-  $tor_ip                = "192.168.1.3"
-  $tor_port              = "9050"
-}
-
-class privoxy::params {
+class privoxy::params inherits consts {
   $privoxy_ip            = $ipaddress_eth0
   $privoxy_port          = 8118
-  $tor_ip                = "192.168.1.3"
+  $tor_ip                = $consts::tor_private_ip
   $tor_port              = "9050"
   $tor_oignon_pages_port = "9040"
   $polipo_ip             = "127.0.0.1"
   $polipo_port           = 8123
-  $i2p_ip                = "10.1.0.3"
+  $i2p_ip                = $consts::i2p_private_ip
   $i2p_httpproxy_port    = 4444
   $i2p_httpsproxy_port   = 4445
   $i2p_webconsole_port   = 7657
-  $localn                = "192.168.1"
-  $privaten              = "10.1.0"  
+  $localn                = $consts::localn
+  $privaten              = $consts::privaten  
+}
+
+class polipo::params(
+  $tor_ip                = $privoxy::params::tor_ip,
+  $tor_port              = $privoxy::params::tor_port
+) inherits privoxy::params {
 }
 
 node default {

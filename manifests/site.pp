@@ -1370,7 +1370,7 @@ class name_server {
      
 }
 
-class privoxy {
+class privoxy_ {
      exec { "/usr/local/bin/uidmod.sh ${privoxy_id} ${privoxy_user}":
      	  require => [ Mount["/usr/local/bin"], Package[privoxy] ],
      }
