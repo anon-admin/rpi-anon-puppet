@@ -2,7 +2,11 @@ class simple_apt_cacher::service ($proxy_ip, $proxy_port, $acng_user = $simple_a
 
   contain simple_apt_cacher::clean
 
-  file { ["/var/log/apt-cacher-ng", "/var/cache/apt-cacher-ng"]: }
+  file { ["/var/log/apt-cacher-ng", "/var/cache/apt-cacher-ng"]: 
+    ensure => directory,
+    group  => "${acng_user}",
+    mode   => "g+w",    
+  }
 
   file { "/etc/apt-cacher-ng/acng.conf":
     owner => root,
