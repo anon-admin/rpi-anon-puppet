@@ -18,6 +18,8 @@ class conf {
   contain conf::cron
   contain conf::apt
   contain conf::wget
+  contain conf::git
+  contain conf::expect
 
 }
 
