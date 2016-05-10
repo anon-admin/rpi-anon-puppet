@@ -10,7 +10,6 @@ class monit::minimal::config inherits monit::minimal::install {
     
     exec { "/usr/bin/find /etc/monit -name '*~' -delete":
       require => File["/etc/monit"],
-      before  => Service[monit],
     }
     
     

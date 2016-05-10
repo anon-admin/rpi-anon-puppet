@@ -11,4 +11,6 @@ class monit::minimal::service inherits monit::minimal::config {
     service { "monit":
     }
 
+    Exec["/usr/bin/find /etc/monit -name '*~' -delete"] -> Service[monit]
+
 }
