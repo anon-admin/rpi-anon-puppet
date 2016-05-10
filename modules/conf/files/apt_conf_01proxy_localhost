@@ -1,1 +1,2 @@
 Acquire::http::Proxy "http://localhost:9999";
+Acquire::https::Proxy "http://localhost:3128";

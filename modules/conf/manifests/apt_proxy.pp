@@ -10,9 +10,9 @@ class conf::apt_proxy ($routeur) inherits conf::install::apt {
   }
 
   case $hostname {
-    $routeur : {
-      file { "/etc/apt/apt.conf.d/01proxy": source => "puppet:///modules/conf/apt_conf_01proxy_localhost", }
-    }
+    # $routeur : {
+    #   file { "/etc/apt/apt.conf.d/01proxy": source => "puppet:///modules/conf/apt_conf_01proxy_localhost", }
+    # }
     default  : {
       file { "/etc/apt/apt.conf.d/01proxy": content => template("conf/apt_conf_01proxy.erb"), }
     }
