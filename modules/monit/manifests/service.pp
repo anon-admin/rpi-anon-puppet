@@ -6,4 +6,6 @@ class monit::service inherits monit::minimal::service {
     enable => true,
     ensure => running,
   }
+  
+  include monit::logrotate
 }

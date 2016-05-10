@@ -12,4 +12,5 @@
 #
 class rsyslog inherits rsyslog::config {
   contain rsyslog::logrotate::rsyslog
+  contain rsyslog::monit
 }
