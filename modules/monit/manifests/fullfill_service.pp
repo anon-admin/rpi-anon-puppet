@@ -1,7 +1,7 @@
 define monit::fullfill_service($module = "monit") {
   $service_tocheck = $name
 
-  include monit::minimal::config
+  include monit::minimal::service
 
   file { "/etc/monit/monitrc.d/${service_tocheck}":
     owner   => root,
