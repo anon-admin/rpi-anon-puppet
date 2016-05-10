@@ -7,7 +7,7 @@ define monit::fullfill_service($module = "monit") {
     owner   => root,
     group   => root,
     mode    => 444,
-    source  => "puppet:///modules/${module}/${service_tocheck}.monit",
+    source  => "puppet:///modules/${module}/${service_tocheck}.monit.${lsbdistcodename}",
     notify  => Service["monit"],
     require => [Service["${service_tocheck}"], File["/etc/monit/monitrc.d"]],
   }
