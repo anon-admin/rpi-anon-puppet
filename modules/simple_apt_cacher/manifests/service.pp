@@ -18,11 +18,18 @@ class simple_apt_cacher::service ($proxy_ip, $proxy_port, $acng_user = $simple_a
     content => template("simple_apt_cacher/acng.conf.erb"),
   }
 
+  file { "/etc/apt-cacher-ng/security.conf":
+    owner => root,
+    group => "${acng_user}",
+    mode  => 640,
+    notify => Service["apt-cacher-ng"],
+  }
+
   service { "apt-cacher-ng":
     ensure  => running,
     enable  => true,
     require => [
-      File["/etc/apt-cacher-ng/acng.conf"],
+      File["/etc/apt-cacher-ng/acng.conf","/etc/apt-cacher-ng/security.conf"],
       User["${acng_user}"]],
   }
   
