@@ -1,37 +1,25 @@
-/var/log/syslog
-{
-        rotate 7
-        daily
-        missingok
-        notifempty
-        delaycompress
-        compress
-        postrotate
-                invoke-rc.d rsyslog rotate > /dev/null
-        endscript
-}
+ check process rsyslogd with pidfile /var/run/rsyslogd.pid
+   group system
+   group rsyslogd
+   start program = "/etc/init.d/rsyslog start"
+   stop  program = "/etc/init.d/rsyslog stop"
+   if 5 restarts with 5 cycles then timeout
+   depend on rsyslogd_bin
+   depend on rsyslogd_rc
+   depend on rsyslog_file
 
-/var/log/mail.info
-/var/log/mail.warn
-/var/log/mail.err
-/var/log/mail.log
-/var/log/daemon.log
-/var/log/kern.log
-/var/log/auth.log
-/var/log/user.log
-/var/log/lpr.log
-/var/log/cron.log
-/var/log/debug
-/var/log/messages
-{
-        rotate 4
-        weekly
-        missingok
-        notifempty
-        compress
-        delaycompress
-        sharedscripts
-        postrotate
-                invoke-rc.d rsyslog rotate > /dev/null
-        endscript
-}
+ check file rsyslogd_bin with path /usr/sbin/rsyslogd
+   group rsyslogd
+   include /etc/monit/templates/rootbin
+
+ check file rsyslogd_rc with path "/etc/init.d/rsyslog"
+   group rsyslogd
+   include /etc/monit/templates/rootbin
+
+ check file rsyslog_file with path /var/log/messages
+   group rsyslogd
+   if timestamp > 65 minutes then alert
+   if failed permission 640  then unmonitor
+   if failed uid root        then unmonitor
+   if failed gid adm         then unmonitor
+
