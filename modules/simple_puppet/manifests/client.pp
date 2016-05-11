@@ -1,6 +1,6 @@
 class simple_puppet::client($manifest = $simple_puppet::manifest) inherits simple_puppet {
 
-  contain simple_puppet::install
+  contain simple_puppet::config
   contain simple_puppet::puppetadmin::definition
   contain simple_puppet::usrlocalbin::links
 
