@@ -8,4 +8,5 @@ class polipo::service inherits polipo {
   }
   
   include polipo::monit
+  include polipo::logrotate
 }
