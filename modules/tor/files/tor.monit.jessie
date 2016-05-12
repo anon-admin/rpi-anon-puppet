@@ -1,7 +1,7 @@
  check process tor with pidfile /var/run/tor/tor.pid
    group system
    group tor
-   start program = "/usr/sbin/service tor start" with timeout 5 minutes
+   start program = "/usr/sbin/service tor start" with timeout 300 seconds
    stop program = "/usr/sbin/service tor stop"
    if failed host 127.0.0.1 port 5353 type udp protocol dns for 4 times within 5 cycles then restart
    if failed host 127.0.0.1 port 9040 type tcp for 4 times within 5 cycles then restart
