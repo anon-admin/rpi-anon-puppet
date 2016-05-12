@@ -1,0 +1,5 @@
+check process polipo with pidfile /var/run/polipo/polipo.pid
+   start program = "/etc/init.d/polipo start"
+   stop program  = "/etc/init.d/polipo stop"
+   if failed host 127.0.0.1 port 8123 protocol tcp for 3 times within 4 cycles then restart
+   if 5 restarts within 20 cycles then timeout

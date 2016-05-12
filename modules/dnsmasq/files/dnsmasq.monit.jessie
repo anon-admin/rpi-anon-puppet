@@ -1,0 +1,6 @@
+check process dnsmasq with pidfile /var/run/dnsmasq/dnsmasq.pid
+   start program = "/etc/init.d/dnsmasq start"
+   stop program  = "/etc/init.d/dnsmasq stop"
+   if failed host 127.0.0.1 port 53 type tcp protocol dns for 3 times within 4 cycles then restart
+   if failed host 127.0.0.1 port 53 type udp protocol dns for 3 times within 4 cycles then restart
+   if 5 restarts within 20 cycles then timeout
