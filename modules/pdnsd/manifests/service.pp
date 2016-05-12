@@ -7,4 +7,6 @@ class pdnsd::service inherits pdnsd {
     enable => true,
     #before => Service[polipo, pritorxy],
   }
+  
+  include pdnsd::monit
 }
