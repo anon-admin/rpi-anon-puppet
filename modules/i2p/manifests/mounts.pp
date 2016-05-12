@@ -51,7 +51,7 @@ class i2p::mounts (
     device  => "${i2p_mountpoint}/jvm",
     require => [File["/usr/lib/jvm", "${i2p_mountpoint}/jvm"], Mount["${i2p_mountpoint}"]],
   }
-   mount["/usr/lib/jvm"] -> Package["oracle-java8-jdk"]
+  Mount["/usr/lib/jvm"] -> Package["oracle-java8-jdk"]
 
   Mount[
     "/etc/i2p", "/var/log/i2p", "${i2p_home}", "/usr/share/i2p",  "/usr/lib/jvm"] {
