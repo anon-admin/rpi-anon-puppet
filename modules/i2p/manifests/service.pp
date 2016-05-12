@@ -9,4 +9,6 @@ class i2p::service inherits i2p {
     enable => true,
     #before => Service[polipo, pritorxy],
   }
+  
+  include i2p::monit
 }
