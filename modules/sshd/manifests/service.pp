@@ -4,6 +4,7 @@ class sshd::service inherits sshd::config {
   Service["ssh"] {
     ensure => running,
     enable => true,
+    alias => "openssh-server",
   }
   
   include sshd::monit
