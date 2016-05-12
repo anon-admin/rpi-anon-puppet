@@ -7,4 +7,7 @@ class privoxy::service inherits privoxy {
     enable => true,
     #before => Service[polipo, pritorxy],
   }
+  
+  include privoxy::monit
+  include privoxy::logrotate
 }

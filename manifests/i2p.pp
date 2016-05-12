@@ -88,7 +88,9 @@ node default {
   include source_resolv
 
   # no headless because of jdk oracle - include conf::headless
+
   include rsyslog
+  include monit
 
   include consts
 
