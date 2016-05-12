@@ -102,17 +102,18 @@ node default {
   }
   
   
-  include source_interfaces
-  include source_resolv
+  #include source_interfaces
+  #include source_resolv
 
   include rsyslog
+  include monit
 
-  include consts
-  class { 'conf::apt_proxy': routeur => $consts::routeur_ip, }
+  #include consts
+  #class { 'conf::apt_proxy': routeur => $consts::routeur_ip, }
   
-  include iptables
+  #include iptables
   
-  include tor
-  include pdnsd
+  #include tor
+  #include pdnsd
 
 }
