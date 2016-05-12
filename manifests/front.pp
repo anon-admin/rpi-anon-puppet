@@ -132,7 +132,7 @@ node default {
   include ntp
   include privoxy
   include polipo
-  incluse sshd
+  include sshd
 
   include iptables
 }
