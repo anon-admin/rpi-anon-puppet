@@ -1,19 +1,14 @@
- check process pdnsd with pidfile /var/run/pdns_recursor.pid
+ check process tor with pidfile /var/run/tor/tor.pid
    group system
-   group dns
-   group pdnsd
-   start program = "/etc/init.d/pdnsd start"
-   stop program = "/etc/init.d/pdnsd stop"
-   if failed host 127.0.0.1 port 53 type udp protocol dns for 3 times within 4 cycles then restart
+   group tor
+   start program = "/usr/sbin/service start tor"
+   stop program = "/usr/sbin/service stop tor"
+   if failed host 127.0.0.1 port 5353 type udp protocol dns for 3 times within 4 cycles then restart
+   if failed host 127.0.0.1 port 9040 type tcp for 3 times within 4 cycles then restart
    if 5 restarts within 20 cycles then timeout
-   depend pdnsd_bin
-   depend pdnsd_rc
+   depend tor_bin
 
- check file pdnsd_bin with path /usr/sbin/pdnsd
-   group pdnsd
-   include /etc/monit/templates/rootbin
-
- check file pdnsd_rc with path /etc/init.d/pdnsd
-   group pnds-recursor
+ check file tor_bin with path /usr/bin/tor
+   group tor
    include /etc/monit/templates/rootbin
 
