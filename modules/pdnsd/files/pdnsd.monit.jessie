@@ -1,4 +1,4 @@
- check process pdnsd with pidfile /var/run/pdns_recursor.pid
+ check process pdnsd with pidfile /var/run/pdnsd.pid
    group system
    group dns
    group pdnsd
@@ -14,6 +14,6 @@
    include /etc/monit/templates/rootbin
 
  check file pdnsd_rc with path /etc/init.d/pdnsd
-   group pnds-recursor
+   group pndsd
    include /etc/monit/templates/rootbin
 

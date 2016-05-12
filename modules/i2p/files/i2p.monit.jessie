@@ -1,0 +1,12 @@
+ check process i2p with pidfile /var/run/i2p/i2p.pid
+   group i2p
+   start program = "/etc/init.d/i2p start"
+   stop program = "/etc/init.d/i2p stop"
+   if failed host 127.0.0.1 port 4444 type tcp protocol http request "/" for 3 times within 4 cycles then restart
+   if 5 restarts within 20 cycles then timeout
+   depend i2p_rc
+
+ check file i2p_rc with path /etc/init.d/i2p
+   group i2p
+   include /etc/monit/templates/rootbin
+
