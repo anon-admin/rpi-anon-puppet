@@ -12,9 +12,9 @@ class pdnsd::install (
       Mount["/usr/local/bin"],
       Package[pdnsd]], }
 
-  exec { "/usr/sbin/service pdnsd stop":
+  exec { "/etc/init.d/pdnsd stop":
     onlyif  => [
-      "/usr/sbin/service pdnsd status",
+      "/etc/init.d/pdnsd status",
       "/usr/bin/test -z \"$( /bin/grep \'^${pdnsd_user}:x:${pdnsd_id}:\' /etc/passwd )\""],
     before  => User["${pdnsd_user}"],
     require => Package[pdnsd],
@@ -23,7 +23,7 @@ class pdnsd::install (
   User["${pdnsd_user}"] {
     gid     => "${squid_id}",
     ensure  => present,
-    require => [Exec["/usr/local/bin/uidmod.sh ${pdnsd_id} ${pdnsd_user}", "/usr/sbin/service pdnsd stop"], Group["${squid_user}"]],
+    require => [Exec["/usr/local/bin/uidmod.sh ${pdnsd_id} ${pdnsd_user}", "/etc/init.d/pdnsd stop"], Group["${squid_user}"]],
     # before  => [Service["pdnsd"], Exec["do iptables"]],
     before  => Service["pdnsd"],
   }

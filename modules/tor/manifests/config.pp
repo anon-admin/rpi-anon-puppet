@@ -70,8 +70,8 @@ class tor::config (
     notify  => Service[tor],
   }
 
-  exec { "/usr/sbin/service tor stop":
-    onlyif  => ["/usr/sbin/service tor status", "/usr/bin/test -z \"$( /bin/grep \'^${tor_user}:x:${tor_id}:\' /etc/passwd )\""],
+  exec { "/etc/init.d/tor stop":
+    onlyif  => ["/etc/init.d/tor status", "/usr/bin/test -z \"$( /bin/grep \'^${tor_user}:x:${tor_id}:\' /etc/passwd )\""],
     before  => User["${tor_user}"],
     require => Package[tor],
     notify  => Service[tor],

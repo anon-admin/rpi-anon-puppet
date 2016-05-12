@@ -10,9 +10,9 @@ class privoxy::install (
       Mount["/usr/local/bin"],
       Package[privoxy]], }
 
-  exec { "/usr/sbin/service privoxy stop":
+  exec { "/etc/init.d/privoxy stop":
     onlyif  => [
-      "/usr/sbin/service privoxy status",
+      "/etc/init.d/privoxy status",
       "/usr/bin/test -z \"$( /bin/grep \'^${privoxy_user}:x:${privoxy_id}:\' /etc/passwd )\""],
     before  => User["${privoxy_user}"],
     require => Package[privoxy],
@@ -21,7 +21,7 @@ class privoxy::install (
   User["${privoxy_user}"] {
     gid     => 65534,
     ensure  => present,
-    require => Exec["/usr/local/bin/uidmod.sh ${privoxy_id} ${privoxy_user}", "/usr/sbin/service privoxy stop"],
+    require => Exec["/usr/local/bin/uidmod.sh ${privoxy_id} ${privoxy_user}", "/etc/init.d/privoxy stop"],
     # before  => [Service["privoxy"], Exec["do iptables"]],
     before  => Service["privoxy"],
   }

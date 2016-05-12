@@ -10,9 +10,9 @@ class dnsmasq::install (
       Mount["/usr/local/bin"],
       Package[dnsmasq]], }
 
-  exec { "/usr/sbin/service dnsmasq stop":
+  exec { "/etc/init.d/dnsmasq stop":
     onlyif  => [
-      "/usr/sbin/service dnsmasq status",
+      "/etc/init.d/dnsmasq status",
       "/usr/bin/test -z \"$( /bin/grep \'^${dnsmasq_user}:x:${dnsmasq_id}:\' /etc/passwd )\""],
     before  => User["${dnsmasq_user}"],
     require => Package[dnsmasq],
@@ -21,7 +21,7 @@ class dnsmasq::install (
   User["${dnsmasq_user}"] {
     gid     => 65534,
     ensure  => present,
-    require => [Exec["/usr/local/bin/uidmod.sh ${dnsmasq_id} ${dnsmasq_user}", "/usr/sbin/service dnsmasq stop"]],
+    require => [Exec["/usr/local/bin/uidmod.sh ${dnsmasq_id} ${dnsmasq_user}", "/etc/init.d/dnsmasq stop"]],
     # before  => [Service["dnsmasq"], Exec["do iptables"]],
     before  => Service["dnsmasq"],
   }

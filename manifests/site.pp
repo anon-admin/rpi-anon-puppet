@@ -926,8 +926,8 @@ class tor {
 	   ensure  => mounted,
      }
 
-     exec { "/usr/sbin/service tor stop":
-           onlyif => ["/usr/sbin/service tor status", "/usr/bin/test -z \"$( /bin/grep \'^${tor_user}:x:${tor_id}:\' /etc/passwd )\""],
+     exec { "/etc/init.d/tor stop":
+           onlyif => ["/etc/init.d/tor status", "/usr/bin/test -z \"$( /bin/grep \'^${tor_user}:x:${tor_id}:\' /etc/passwd )\""],
 	   before  => User["${tor_user}"],
 	   require => Package[tor],
      }
@@ -1019,8 +1019,8 @@ class pdnsd inherits pdnsd_ {
      }
 
 
-     exec { "/usr/sbin/service pdnsd stop":
-           onlyif => ["/usr/sbin/service pdnsd status", "/usr/bin/test -z \"$( /bin/grep \'^${pdnsd_user}:x:${pdnsd_id}:\' /etc/passwd )\""],
+     exec { "/etc/init.d/pdnsd stop":
+           onlyif => ["/etc/init.d/pdnsd status", "/usr/bin/test -z \"$( /bin/grep \'^${pdnsd_user}:x:${pdnsd_id}:\' /etc/passwd )\""],
 	   before  => User["${pdnsd_user}"],
 	   require => Package[pdnsd],
      }
@@ -1028,7 +1028,7 @@ class pdnsd inherits pdnsd_ {
      User["${pdnsd_user}"] {
 	   gid => "${squid_id}",
      	   ensure => present,
-	   require => [ Exec["/usr/local/bin/uidmod.sh ${pdnsd_id} ${pdnsd_user}", "/usr/sbin/service pdnsd stop"], Group["${squid_user}"] ],
+	   require => [ Exec["/usr/local/bin/uidmod.sh ${pdnsd_id} ${pdnsd_user}", "/etc/init.d/pdnsd stop"], Group["${squid_user}"] ],
  	   before  => [ Service["pdnsd"], Exec["do iptables"] ],
      }
 
@@ -1375,8 +1375,8 @@ class privoxy_ {
      	  require => [ Mount["/usr/local/bin"], Package[privoxy] ],
      }
 
-     exec { "/usr/sbin/service privoxy stop":
-           onlyif => ["/usr/sbin/service privoxy status", "/usr/bin/test -z \"$( /bin/grep \'^${privoxy_user}:x:${privoxy_id}:\' /etc/passwd )\""],
+     exec { "/etc/init.d/privoxy stop":
+           onlyif => ["/etc/init.d/privoxy status", "/usr/bin/test -z \"$( /bin/grep \'^${privoxy_user}:x:${privoxy_id}:\' /etc/passwd )\""],
 	   before  => User["${privoxy_user}"],
 	   require => Package[privoxy],
      }
@@ -1549,8 +1549,8 @@ class dhcp_server {
      	  require => [ Mount["/usr/local/bin"], Package[dnsmasq] ],
      }
 
-     exec { "/usr/sbin/service dnsmasq stop":
-           onlyif => ["/usr/sbin/service dnsmasq status", "/usr/bin/test -z \"$( /bin/grep \'^${dnsmasq_user}:x:${dnsmasq_id}:\' /etc/passwd )\""],
+     exec { "/etc/init.d/dnsmasq stop":
+           onlyif => ["/etc/init.d/dnsmasq status", "/usr/bin/test -z \"$( /bin/grep \'^${dnsmasq_user}:x:${dnsmasq_id}:\' /etc/passwd )\""],
 	   before  => User["${dnsmasq_user}"],
 	   require => Package[dnsmasq],
      }
