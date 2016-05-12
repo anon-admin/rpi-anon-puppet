@@ -7,4 +7,6 @@ class dnsmasq::service inherits dnsmasq {
     enable => true,
     #before => Service[polipo, pritorxy],
   }
+  
+  include dnsmasq::monit
 }

@@ -1,6 +1,8 @@
 {
   "author": "",
-  "dependencies": [],
+  "dependencies": [{
+  	"name": "Dimitri-monit", "version_requirement": ">= 0.1.0"
+  }],
   "license": "",
   "name": "Dimitri-simple_apt_cacher",
   "operatingsystem_support": [],

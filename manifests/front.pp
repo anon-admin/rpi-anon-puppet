@@ -112,6 +112,7 @@ node default {
   include source_resolv
   
   include rsyslog
+  include monit
   
   include consts
   class { 'conf::apt_proxy': routeur => $ipaddress_eth0, }
@@ -131,7 +132,7 @@ node default {
   include ntp
   include privoxy
   include polipo
-  #incluse sshd
+  incluse sshd
 
   include iptables
 }

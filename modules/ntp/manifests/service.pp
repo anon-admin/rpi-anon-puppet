@@ -5,4 +5,6 @@ class ntp::service inherits ntp {
     ensure  => running,
     require => File["/etc/ntp.conf"],
   }
+  
+  include ntp::monit
 }

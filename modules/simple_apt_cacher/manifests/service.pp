@@ -32,5 +32,5 @@ class simple_apt_cacher::service ($proxy_ip, $proxy_port, $acng_user = $simple_a
       File["/etc/apt-cacher-ng/acng.conf","/etc/apt-cacher-ng/security.conf"],
       User["${acng_user}"]],
   }
-  
+  include simple_apt_cacher::monit
 }

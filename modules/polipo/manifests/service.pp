@@ -6,4 +6,6 @@ class polipo::service inherits polipo {
     enable => true,
   # before => Service[polipo, pritorxy],
   }
+  
+  include polipo::monit
 }
