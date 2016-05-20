@@ -12,9 +12,15 @@ class rsyslog::config inherits rsyslog::install {
     ensure => absent,
   }
   
-  exec { "/bin/sed -i 's/monthly/weekly/' /etc/logrotate.conf":
+  exec { "/bin/sed -i 's/monthly/daily/' /etc/logrotate.conf":
     provider => shell,
     cwd => "/tmp",
     require => Package["logrotate"],
   }
+  exec { "/bin/sed -i 's/weekly/daily/' /etc/logrotate.conf":
+    provider => shell,
+    cwd => "/tmp",
+    require => Package["logrotate"],
+  }
+  
 }
