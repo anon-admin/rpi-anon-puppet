@@ -3,7 +3,7 @@
      dateext
      notifempty
      create 640 privoxy root
-     su privoxy privoxy
+     su privoxy nogroup
      rotate 99
      size 4M
      #maxage 365
@@ -17,7 +17,7 @@
      dateext
      notifempty
      create 640 privoxy root
-     su privoxy privoxy
+     su privoxy nogroup
      rotate 99
      size 4M
      #maxage 365
