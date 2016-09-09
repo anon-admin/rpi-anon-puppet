@@ -11,7 +11,7 @@
 # Sample Usage:
 #
 class ntp (
-  $ntp_hwsync,
+  $ntp_hwsync = undef,
   $ntp_hw_stratum = undef,
   $ntp_interface  = undef,
   $ntp_options    = undef,
