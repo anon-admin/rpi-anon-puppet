@@ -2,6 +2,8 @@
   "author": "",
   "dependencies": [{
   	"name": "Dimitri-monit", "version_requirement": ">= 0.1.0"
+  },{
+    "name": "Dimitri-conf", "version_requirement": ">= 0.1.0"
   }],
   "license": "",
   "name": "Dimitri-rsyslog",

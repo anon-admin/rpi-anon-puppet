@@ -7,6 +7,8 @@ class conf::config::apt inherits conf::install::apt {
     require => Package["apt", "cron"],
   }
 
+  include conf::install::cron
+
   file { "/etc/apt/apt.conf.d/02periodic":
     owner   => root,
     group   => root,
