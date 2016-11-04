@@ -17,6 +17,8 @@ class conf::config::apt inherits conf::install::apt {
     require => [File["/etc/cron.daily/apt"], Service["cron"]],
   }
 
+  include conf::service::cron
+
   exec { "/usr/bin/apt-get update":
     provider    => shell,
     refreshonly => true,
