@@ -10,7 +10,7 @@
 #
 # Sample Usage:
 #
-class userids ($admin_pwd = $userids::params::admin_pwd, $admin_pwd_cr = $userids::params::admin_pwd_cr) inherits userids::params {
+class userids ($admin_pwd, $admin_pwd_cr) {
 
   contain userids::conf::rootgroup
 
@@ -26,7 +26,6 @@ class userids ($admin_pwd = $userids::params::admin_pwd, $admin_pwd_cr = $userid
   $squid_id = $userids::conf::proxygroup::proxy_id
   $squid_user = $userids::conf::proxygroup::proxy_group
 
-  $pdnsd_id = 108
   $pdnsd_user = pdnsd
 
   $privoxy_id = 109
