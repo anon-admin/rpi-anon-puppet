@@ -5,5 +5,6 @@ class conf::network::config::dhcpcd {
     owner => root,
     group => netdev,
   }
+  Package["dhcpcd5"] -> File["/etc/dhcpcd.conf"]
 
 }
