@@ -61,21 +61,21 @@ class params {
   
 #}
 
-#class source_interfaces inherits conf::network::config::interfaces {
+class source_interfaces inherits conf::network::config::interfaces {
 
-#  File["/etc/network/interfaces"] {
-#    source => "/etc/puppet/files/${hostname}/interfaces",
-#  }
+  File["/etc/network/interfaces"] {
+    source => "/etc/puppet/files/${hostname}/interfaces",
+  }
 
-#}
+}
 
-#class source_resolv inherits conf::network::config::resolv {
+class source_resolv inherits conf::network::config::resolv {
 
-#  File["/etc/resolv.conf"] {
-#    source => "/etc/puppet/files/${hostname}/resolv.conf",
-#  }
+  File["/etc/resolv.conf"] {
+    source => "/etc/puppet/files/${hostname}/resolv.conf",
+  }
 
-#}
+}
 
 node default {
   include params
@@ -93,11 +93,11 @@ node default {
   }
   
   
-#  include source_interfaces
-#  include source_resolv
+  include source_interfaces
+  include source_resolv
 
-#  include rsyslog
-#  include monit
+  include rsyslog
+  include monit
 
 #  include consts
 #  class { 'conf::apt_proxy': routeur => $consts::routeur_ip, }
