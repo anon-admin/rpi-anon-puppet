@@ -85,12 +85,12 @@ node default {
   #include service_cron_up
   include simple_puppet::client
 
-  include conf
-#  include conf::network::config::no_dhcpcd
 
-#  class { 'conf::network':
-#    interfaces => ['eth0','eth1'],
-#  }
+  include conf
+  include conf::network::config::no_dhcpcd
+  class { 'conf::network':
+    interfaces => ['eth0','eth1'],
+  }
   
   
 #  include source_interfaces
