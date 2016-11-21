@@ -3,6 +3,9 @@
   "dependencies": [
     {
       "name": "Dimitri-userids", "version_requirement": ">= 0.1.0"
+    },
+    {
+      "name": "Dimitri-conf", "version_requirement": ">= 0.1.0"
     }
   ],
   "license": "",
