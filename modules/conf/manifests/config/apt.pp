@@ -2,6 +2,14 @@ class conf::config::apt inherits conf::install::apt {
   Package["apt"] {
     ensure => latest, }
 
+  if ("$::operatingsystem" == "Debian") {
+    exec { "/usr/bin/apt-get -q -y --force-yes -o DPkg::Options::=--force-confold install ${::lsbdistid}-archive-keyring":
+      before => Package["apt"],
+      cwd => '/tmp',
+      provider => shell,
+    }
+  }
+
   file { "/etc/cron.daily/apt":
     ensure  => present,
     require => Package["apt", "cron"],
