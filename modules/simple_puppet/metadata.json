@@ -1,6 +1,10 @@
 {
   "author": "",
-  "dependencies": [],
+  "dependencies": [
+    {
+      "name": "Dimitri-userids", "version_requirement": ">= 0.1.0"
+    }
+  ],
   "license": "",
   "name": "Dimitri-simple_puppet",
   "operatingsystem_support": [],

@@ -43,6 +43,7 @@ puppet::puppet_librarian: true
 
 
 simple_puppet::puppetadmin_shell: '/bin/false'
+simple_puppet::reports_dir: "/var/lib/puppet/reports"
 simple_puppet::clientbucket_dir: "/var/lib/puppet/clientbucket"
 simple_puppet::manifest: "%{params::manifest}"
 

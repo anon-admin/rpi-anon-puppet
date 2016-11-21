@@ -78,6 +78,7 @@ class params {
 #}
 
 node default {
+  include params
 
   # Exec["/usr/bin/apt-get update"] -> Package<| |>
 
