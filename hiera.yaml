@@ -1,0 +1,13 @@
+---
+:backends:
+  - yaml
+:yaml:
+  :datadir: "/etc/puppet/hieradata"
+:hierarchy:
+  - "nodes/%{::fqdn}"
+  - "domains/%{::domain}"
+  - "passwords"
+  - "common"
+:logger: console
+:merge_behavior: native
+:deep_merge_options: {}

@@ -1,0 +1,86 @@
+---
+ntp::ntp_servers:
+  - "0.debian.pool.ntp.org"
+  - "1.debian.pool.ntp.org"
+
+infradef::domain_family: "ppprod"
+infradef::local_domains: &infradef_local_domains
+  - "%{infradef::domain_family}.net"
+  - "%{infradef::domain_family}.biz"
+  - "%{infradef::domain_family}.club"
+
+infradef::provider_domain: ".netflix.com,.nflxvideo.net,.ntp.org,.github.com,.raspberrypi.org,.raspbian.org,.armbian.com,.ubuntu.com,.plex.tv,.ezvuu.com,.freephonie.net,.free.fr,.freebox.fr"
+
+bind::bind_ip: "%{::ipaddress_br0}"
+bind::forwarders:
+  - "%{infradef::prodiver_dns_ip}"
+bind::searches: *infradef_local_domains
+bind::local_domain: "%{infradef::local_domain}"
+
+bind::external_domain: "dyndns-at-home.com"
+
+rpi_anon_puppet::domain_extension: "prv"
+rpi_anon_puppet::vgname: "DATA2"
+rpi_anon_puppet::vg_mountpoint: "/opt/"
+rpi_anon_puppet::rpi_anon_puppet_relpath: "rpi_anon_puppet"
+
+rpi_anon_puppet::if_localn: "br0"
+rpi_anon_puppet::if_privaten: "br1"
+rpi_anon_puppet::privaten: "10.1.0"
+
+rpi_anon_puppet::local_private_ip_lastdigit: "1"
+rpi_anon_puppet::front_ip_lastdigit: "2"
+
+rpi_anon_puppet::tor_ip_lastdigit: "3"
+rpi_anon_puppet::tor_private_ip_lastdigit: "3"
+rpi_anon_puppet::i2p_ip_lastdigit: "4"
+rpi_anon_puppet::i2p_private_ip_lastdigit: "4"
+
+rpi_anon_puppet::with_storage: true
+
+puppet::puppet_librarian: true
+
+
+
+simple_puppet::puppetadmin_shell: '/bin/false'
+simple_puppet::clientbucket_dir: "/var/lib/puppet/clientbucket"
+simple_puppet::manifest: "%{params::manifest}"
+
+apt_source_list::with_collabora: false
+
+storage::varlog: true
+storage::tmp: true
+storage::home: false
+
+puppet::puppet_lvname: 'puppet'
+puppet::puppet_lvsize: '512M'
+puppet::puppet_lvfs: 'ext4'
+puppet::puppet_mountpoint: "/etc/puppet"
+
+apt_cacher::acng_lvname: 'aptcacher'
+apt_cacher::acng_vgname: 'DATA'
+apt_cacher::acng_lvsize: '64G'
+apt_cacher::acng_lvfs: 'ext4'
+apt_cacher::acng_mountpoint: "/var/aptcacher"
+
+squid::squid_lvname: 'squid'
+squid::squid_vgname: 'DATA'
+squid::squid_lvsize: '8G'
+squid::squid_lvfs: 'ext4'
+squid::squid_mountpoint: "/var/squid"
+
+bind::bind_lvname: 'bind'
+bind::bind_vgname: 'DATA'
+bind::bind_lvsize: '100M'
+bind::bind_lvfs: 'ext4'
+bind::bind_mountpoint: "/var/bind"
+
+lxc::lxc_dir: "/var/lib/lxc"
+lxc::lxc_mountpoint: "/var/lxc"
+lxc::lxc_lvname: 'lxc'
+lxc::lxc_vgname: 'DATA2'
+lxc::lxc_tpname: 'LxcPool'
+lxc::lxc_tpsize: '5G'
+lxc::lxc_container_size: '1G'
+lxc::lxc_lvsize: '512M'
+lxc::lxc_lvfs: 'ext4'

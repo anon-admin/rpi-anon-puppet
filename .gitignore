@@ -1,3 +1,4 @@
 /.project
 manifests/passwords.pp
+hieradata/passwords.yaml
 manifests/consts.pp
