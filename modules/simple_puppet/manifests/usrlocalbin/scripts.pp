@@ -1,5 +1,5 @@
 class simple_puppet::usrlocalbin::scripts {
-  file { ["/etc/puppet/scripts/uidmod.sh", "/etc/puppet/scripts/gidmod.sh"]:
+  file { ["${simple_puppet::conf_root_dir}/scripts/uidmod.sh", "${simple_puppet::conf_root_dir}/scripts/gidmod.sh"]:
     mode => "a+x",
   }
 

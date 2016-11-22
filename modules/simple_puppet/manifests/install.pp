@@ -29,7 +29,7 @@ class simple_puppet::install inherits conf::config::wget {
 
   package { ["puppet", "facter","puppetmaster"]: }
 
-  file { ["/etc/puppet","/etc/puppet/modules"]: }
+  file { ["${simple_puppet::conf_root_dir}","${simple_puppet::conf_root_dir}/modules","${simple_puppet::conf_root_dir}/${simple_puppet::hiera_dir}"]: }
 
 }
 

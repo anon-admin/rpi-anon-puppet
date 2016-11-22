@@ -7,14 +7,14 @@ class simple_puppet::puppetadmin::definition(
   exec { "/usr/local/bin/uidmod.sh ${puppetadmin_id} ${puppetadmin_user}": require => Mount["/usr/local/bin"], }
 
   user { "${puppetadmin_user}":
-    home    => "/etc/puppet",
+    home    => "${simple_puppet::conf_root_dir}",
     uid     => "${puppetadmin_id}",
     gid     => 'root',
     shell   => "${puppetadmin_shell}",
     require => Exec["/usr/local/bin/uidmod.sh ${puppetadmin_id} ${puppetadmin_user}"],
   }
 
-  exec { "chown -R ${puppetadmin_user}:root /etc/puppet/":
+  exec { "chown -R ${puppetadmin_user}:root ${simple_puppet::conf_root_dir}/":
     provider => shell,
     require  => User["${puppetadmin_user}"],
   }

@@ -7,7 +7,7 @@ class simple_puppet::client($manifest = $simple_puppet::manifest) inherits simpl
   contain simple_puppet::service::no
   contain conf::service::cron
 
-  $run_puppet = "cd /etc/puppet/manifests && /usr/bin/puppet apply ${manifest}.pp"
+  $run_puppet = "cd ${simple_puppet::conf_root_dir}/manifests && /usr/bin/puppet apply ${manifest}.pp"
 
   
   cron { "puppetclient_auto_run":

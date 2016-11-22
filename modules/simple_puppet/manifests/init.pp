@@ -19,6 +19,9 @@ class simple_puppet(
   include userids
   $puppetadmin_user = $userids::puppetadmin_user
   $puppetadmin_id = $userids::puppetadmin_id
+
+  $conf_root_dir = "/etc/puppet"
+  $hiera_dir = "hieradata"
 }
 
 
