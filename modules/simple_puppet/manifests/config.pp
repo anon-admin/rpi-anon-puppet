@@ -23,7 +23,7 @@ class simple_puppet::config inherits simple_puppet::install {
 
   $passwd_hiera_file = "${simple_puppet::hiera_dir}/passwords.yaml"
 
-
+  include stdlib
   file_line { "gitignore ${passwd_hiera_file}":
     path => "${simple_puppet::conf_root_dir}/.gitignore",
     line => "${passwd_hiera_file}",
