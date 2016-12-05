@@ -1,6 +1,9 @@
-class simple_puppet::ignore::yaml($conf_root_dir = $simple_puppet::conf_root_dir) inherits simple_puppet {
+class simple_puppet::ignore::yaml(
+  $conf_root_dir = $simple_puppet::conf_root_dir,
+  $hiera_dir = $simple_puppet::hiera_dir
+) inherits simple_puppet {
 
-  $passwd_hiera_file = "${simple_puppet::hiera_dir}/passwords.yaml"
+  $passwd_hiera_file = "${hiera_dir}/passwords.yaml"
 
   include stdlib
   file_line { "gitignore ${conf_root_dir} ${passwd_hiera_file}":
@@ -8,6 +11,6 @@ class simple_puppet::ignore::yaml($conf_root_dir = $simple_puppet::conf_root_dir
     line => "${passwd_hiera_file}",
   }
 
-  File["${conf_root_dir}/${simple_puppet::hiera_dir}"] -> File_line["gitignore ${conf_root_dir} ${passwd_hiera_file}"]
+  File["${conf_root_dir}/${hiera_dir}"] -> File_line["gitignore ${conf_root_dir} ${passwd_hiera_file}"]
 
 }
