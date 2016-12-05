@@ -101,7 +101,7 @@ node default {
 
 #  include consts
 #  class { 'conf::apt_proxy': routeur => $consts::routeur_ip, }
-  
+  include conf::apt_proxy
 #  include iptables
   
 #  include tor
