@@ -104,7 +104,7 @@ node default {
   include conf::apt_proxy
 #  include iptables
   
-#  include tor
+  include tor
 #  include pdnsd
 
 }
