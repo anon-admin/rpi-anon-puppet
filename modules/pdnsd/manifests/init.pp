@@ -19,6 +19,8 @@ class pdnsd (
   $provider_domain,
   $prodiver_dns_ip,
   $prodiver_dns_port,
+  $user_localdomain_name,
+  $user_dns_ip,
   $user_localdomain,
   $pdnsd_cachedir = $pdnsd::params::pdnsd_cachedir) inherits pdnsd::params {
     
