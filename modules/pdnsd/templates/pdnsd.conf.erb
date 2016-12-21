@@ -33,6 +33,15 @@ server {
 }
 
 server {
+    label="<%= @user_localdomain_name %>";
+    ip=<%= @user_dns_ip %>;
+    uptest=query;
+    policy=excluded;
+    include=<%= @user_localdomain %>;
+}
+
+
+server {
     label="<%= @provider_domain_name %>";
     ip=<%= @prodiver_dns_ip %>;
     port=<%= @prodiver_dns_port %>;

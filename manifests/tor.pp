@@ -105,6 +105,6 @@ node default {
 #  include iptables
   
   include tor
-#  include pdnsd
+  include pdnsd
 
 }
