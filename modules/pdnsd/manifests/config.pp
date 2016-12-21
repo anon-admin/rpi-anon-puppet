@@ -8,9 +8,10 @@ class pdnsd::config (
   $provider_domain      = $pdnsd::provider_domain,
   $prodiver_dns_ip      = $pdnsd::prodiver_dns_ip,
   $prodiver_dns_port    = $pdnsd::prodiver_dns_port,
-  $user_localdomain     = $pdnsd::user_localdomain) inherits pdnsd {
+  $user_localdomain     = $pdnsd::user_localdomain,
+  $pdnsd_cachedir       = $pdnsd::pdnsd_cachedir) inherits pdnsd {
        
-  file { "/var/cache/pdnsd": require => User["${pdnsd_user}"], }
+  file { "${pdnsd_cachedir}": require => User["${pdnsd_user}"], }
 
   file { "/etc/pdnsd.conf": require => Package[pdnsd], }
 

@@ -7,7 +7,7 @@
 
 global {
         perm_cache=2048;
-        cache_dir="/var/cache/pdnsd";
+        cache_dir="<%= @pdnsd_cachedir %>";
         run_as="<%= @pdnsd_user %>";
         server_ip = <%= @pdnsd_ip %>;
         server_port = <%= @pdnsd_port %>;

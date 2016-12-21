@@ -18,8 +18,13 @@ class infradef($routeur,
   $provider_domain_name,
   $provider_domain,
   $prodiver_dns_ip_lastdigit,
+  $prodiver_dns_ip_full = unset,
   $prodiver_dns_port) {
 
   $local_domain = "${domain_family}.${local_domain_extension}"
-  $prodiver_dns_ip = "${localn}.${prodiver_dns_ip_lastdigit}"
+  if ($prodiver_dns_ip_full != unset) {
+    $prodiver_dns_ip = "${prodiver_dns_ip_full}"
+  } else {
+    $prodiver_dns_ip = "${localn}.${prodiver_dns_ip_lastdigit}"
+  }
 }

@@ -26,8 +26,6 @@ class userids ($admin_pwd, $admin_pwd_cr) {
   $squid_id = $userids::conf::proxygroup::proxy_id
   $squid_user = $userids::conf::proxygroup::proxy_group
 
-  $pdnsd_user = pdnsd
-
   $privoxy_id = 109
   $privoxy_user = privoxy
 
@@ -57,6 +55,9 @@ class userids ($admin_pwd, $admin_pwd_cr) {
 
   $pritorxy_id = 119
   $pritorxy_user = pritorxy
+
+  $pdnsd_id = 120
+  $pdnsd_user = pdnsd
 
   $i2p_id = 122
   $i2p_user = "i2psvc"
