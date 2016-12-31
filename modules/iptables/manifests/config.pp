@@ -1,5 +1,5 @@
 class iptables::config inherits conf::network::config::iptables {
-  contain iptables
+  #contain iptables
   
   $is_lxc_box = $iptables::is_lxc_box
   $domain_privaten = $iptables::domain_privaten
