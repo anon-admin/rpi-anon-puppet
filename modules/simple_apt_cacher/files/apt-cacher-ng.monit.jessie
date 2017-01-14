@@ -1,4 +1,4 @@
 check process apt-cacher-ng with pidfile /var/run/apt-cacher-ng/pid
    start program = "/etc/init.d/apt-cacher-ng start"
-   stop program  = "/etc/init.d/apt-cacher-ng stop"
+   stop program  = "/bin/bash -c '/etc/init.d/apt-cacher-ng stop ; /bin/sleep 2 && /usr/bin/killall apt-cacher-ng'"
    
