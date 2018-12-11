@@ -1,3 +1,0 @@
-# simple_puppet #
-
-This is the simple_puppet module. It provides...

@@ -4,3 +4,6 @@
 [submodule "modules/iptables"]
 	path = modules/iptables
 	url = https://github.com/anon-admin/iptables.git
+[submodule "modules/rsyslog"]
+	path = modules/rsyslog
+	url = https://github.com/anon-admin/rsyslog.git
