@@ -13,3 +13,6 @@
 [submodule "modules/simple_sshd"]
 	path = modules/simple_sshd
 	url = https://github.com/anon-admin/simple_sshd.git
+[submodule "modules/conf"]
+	path = modules/conf
+	url = https://github.com/anon-admin/conf.git
