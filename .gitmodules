@@ -1,3 +1,6 @@
 [submodule "modules/monit"]
 	path = modules/monit
 	url = https://github.com/anon-admin/monit.git
+[submodule "modules/iptables"]
+	path = modules/iptables
+	url = https://github.com/anon-admin/iptables.git
