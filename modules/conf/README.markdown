@@ -1,3 +1,0 @@
-# conf #
-
-This is the conf module. It provides...

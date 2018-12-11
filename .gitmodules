@@ -10,3 +10,6 @@
 [submodule "modules/simple_puppet"]
 	path = modules/simple_puppet
 	url = https://github.com/anon-admin/simple_puppet.git
+[submodule "modules/simple_sshd"]
+	path = modules/simple_sshd
+	url = https://github.com/anon-admin/simple_sshd.git
