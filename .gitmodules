@@ -1,0 +1,3 @@
+[submodule "modules/monit"]
+	path = modules/monit
+	url = https://github.com/anon-admin/monit.git

@@ -1,5 +1,0 @@
-check process ntpd with pidfile /var/run/ntpd.pid
-   start program = "/etc/init.d/ntp start"
-   stop  program = "/etc/init.d/ntp stop"
-   if failed host 127.0.0.1 port 123 type udp for 3 times within 4 cycles then restart
-   if 5 restarts within 20 cycles then timeout
