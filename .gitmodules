@@ -7,3 +7,6 @@
 [submodule "modules/rsyslog"]
 	path = modules/rsyslog
 	url = https://github.com/anon-admin/rsyslog.git
+[submodule "modules/simple_puppet"]
+	path = modules/simple_puppet
+	url = https://github.com/anon-admin/simple_puppet.git

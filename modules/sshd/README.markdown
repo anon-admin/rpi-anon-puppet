@@ -1,3 +1,0 @@
-# sshd #
-
-This is the sshd module. It provides...
