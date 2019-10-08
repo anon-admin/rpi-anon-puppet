@@ -16,3 +16,6 @@
 [submodule "modules/conf"]
 	path = modules/conf
 	url = https://github.com/anon-admin/conf.git
+[submodule "modules/userids"]
+	path = modules/userids
+	url = https://github.com/anon-admin/userids.git
